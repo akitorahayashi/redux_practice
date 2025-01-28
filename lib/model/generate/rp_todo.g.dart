@@ -8,6 +8,7 @@ part of '../todo/rp_todo.dart';
 
 _$RPToDoImpl _$$RPToDoImplFromJson(Map<String, dynamic> json) => _$RPToDoImpl(
       id: json['id'] as String,
+      categoryId: json['categoryId'] as String,
       title: json['title'] as String,
       isChecked: json['isChecked'] as bool? ?? false,
     );
@@ -15,6 +16,7 @@ _$RPToDoImpl _$$RPToDoImplFromJson(Map<String, dynamic> json) => _$RPToDoImpl(
 Map<String, dynamic> _$$RPToDoImplToJson(_$RPToDoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'categoryId': instance.categoryId,
       'title': instance.title,
       'isChecked': instance.isChecked,
     };

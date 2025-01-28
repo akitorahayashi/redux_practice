@@ -3,6 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part '../generate/rp_todo_category.freezed.dart';
 part '../generate/rp_todo_category.g.dart';
 
+// flutter pub run build_runner build
+
 @freezed
 class RPToDoCategory with _$RPToDoCategory {
   const factory RPToDoCategory({

@@ -7,6 +7,7 @@ part '../generate/rp_todo.g.dart';
 class RPToDo with _$RPToDo {
   const factory RPToDo({
     required String id,
+    required String categoryId,
     required String title,
     @Default(false) bool isChecked,
   }) = _RPToDo;

@@ -21,6 +21,7 @@ RPToDo _$RPToDoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RPToDo {
   String get id => throw _privateConstructorUsedError;
+  String get categoryId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   bool get isChecked => throw _privateConstructorUsedError;
 
@@ -38,7 +39,7 @@ abstract class $RPToDoCopyWith<$Res> {
   factory $RPToDoCopyWith(RPToDo value, $Res Function(RPToDo) then) =
       _$RPToDoCopyWithImpl<$Res, RPToDo>;
   @useResult
-  $Res call({String id, String title, bool isChecked});
+  $Res call({String id, String categoryId, String title, bool isChecked});
 }
 
 /// @nodoc
@@ -57,6 +58,7 @@ class _$RPToDoCopyWithImpl<$Res, $Val extends RPToDo>
   @override
   $Res call({
     Object? id = null,
+    Object? categoryId = null,
     Object? title = null,
     Object? isChecked = null,
   }) {
@@ -64,6 +66,10 @@ class _$RPToDoCopyWithImpl<$Res, $Val extends RPToDo>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -84,7 +90,7 @@ abstract class _$$RPToDoImplCopyWith<$Res> implements $RPToDoCopyWith<$Res> {
       __$$RPToDoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, bool isChecked});
+  $Res call({String id, String categoryId, String title, bool isChecked});
 }
 
 /// @nodoc
@@ -101,6 +107,7 @@ class __$$RPToDoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? categoryId = null,
     Object? title = null,
     Object? isChecked = null,
   }) {
@@ -108,6 +115,10 @@ class __$$RPToDoImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -125,13 +136,18 @@ class __$$RPToDoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RPToDoImpl implements _RPToDo {
   const _$RPToDoImpl(
-      {required this.id, required this.title, this.isChecked = false});
+      {required this.id,
+      required this.categoryId,
+      required this.title,
+      this.isChecked = false});
 
   factory _$RPToDoImpl.fromJson(Map<String, dynamic> json) =>
       _$$RPToDoImplFromJson(json);
 
   @override
   final String id;
+  @override
+  final String categoryId;
   @override
   final String title;
   @override
@@ -140,7 +156,7 @@ class _$RPToDoImpl implements _RPToDo {
 
   @override
   String toString() {
-    return 'RPToDo(id: $id, title: $title, isChecked: $isChecked)';
+    return 'RPToDo(id: $id, categoryId: $categoryId, title: $title, isChecked: $isChecked)';
   }
 
   @override
@@ -149,6 +165,8 @@ class _$RPToDoImpl implements _RPToDo {
         (other.runtimeType == runtimeType &&
             other is _$RPToDoImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.isChecked, isChecked) ||
                 other.isChecked == isChecked));
@@ -156,7 +174,8 @@ class _$RPToDoImpl implements _RPToDo {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, isChecked);
+  int get hashCode =>
+      Object.hash(runtimeType, id, categoryId, title, isChecked);
 
   /// Create a copy of RPToDo
   /// with the given fields replaced by the non-null parameter values.
@@ -177,6 +196,7 @@ class _$RPToDoImpl implements _RPToDo {
 abstract class _RPToDo implements RPToDo {
   const factory _RPToDo(
       {required final String id,
+      required final String categoryId,
       required final String title,
       final bool isChecked}) = _$RPToDoImpl;
 
@@ -184,6 +204,8 @@ abstract class _RPToDo implements RPToDo {
 
   @override
   String get id;
+  @override
+  String get categoryId;
   @override
   String get title;
   @override
