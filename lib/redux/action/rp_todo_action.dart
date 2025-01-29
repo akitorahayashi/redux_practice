@@ -7,18 +7,18 @@ part 'generate/rp_todo_action.freezed.dart';
 
 @freezed
 class RPTodoAction with _$RPTodoAction {
-  /// 新しいTodoを追加する
   const factory RPTodoAction.addTodo({
+    required String categoryId,
     required RPToDo todo,
   }) = AddTodoAction;
 
-  /// Todoを削除する
   const factory RPTodoAction.removeTodo({
+    required String categoryId,
     required String todoId,
   }) = RemoveTodoAction;
 
-  /// Todoのチェック状態を切り替える
   const factory RPTodoAction.toggleTodo({
+    required String categoryId,
     required String todoId,
   }) = ToggleTodoAction;
 }

@@ -7,12 +7,10 @@ part 'generate/rp_todo_category_action.freezed.dart';
 
 @freezed
 class RPTodoCategoryAction with _$RPTodoCategoryAction {
-  /// カテゴリーを追加する
   const factory RPTodoCategoryAction.addCategory({
     required RPToDoCategory category,
   }) = AddCategoryAction;
 
-  /// カテゴリーを削除する
   const factory RPTodoCategoryAction.removeCategory({
     required String categoryId,
   }) = RemoveCategoryAction;

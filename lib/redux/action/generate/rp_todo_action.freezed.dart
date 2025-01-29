@@ -16,25 +16,26 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RPTodoAction {
+  String get categoryId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RPToDo todo) addTodo,
-    required TResult Function(String todoId) removeTodo,
-    required TResult Function(String todoId) toggleTodo,
+    required TResult Function(String categoryId, RPToDo todo) addTodo,
+    required TResult Function(String categoryId, String todoId) removeTodo,
+    required TResult Function(String categoryId, String todoId) toggleTodo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RPToDo todo)? addTodo,
-    TResult? Function(String todoId)? removeTodo,
-    TResult? Function(String todoId)? toggleTodo,
+    TResult? Function(String categoryId, RPToDo todo)? addTodo,
+    TResult? Function(String categoryId, String todoId)? removeTodo,
+    TResult? Function(String categoryId, String todoId)? toggleTodo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RPToDo todo)? addTodo,
-    TResult Function(String todoId)? removeTodo,
-    TResult Function(String todoId)? toggleTodo,
+    TResult Function(String categoryId, RPToDo todo)? addTodo,
+    TResult Function(String categoryId, String todoId)? removeTodo,
+    TResult Function(String categoryId, String todoId)? toggleTodo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +61,12 @@ mixin _$RPTodoAction {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of RPTodoAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $RPTodoActionCopyWith<RPTodoAction> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -67,6 +74,8 @@ abstract class $RPTodoActionCopyWith<$Res> {
   factory $RPTodoActionCopyWith(
           RPTodoAction value, $Res Function(RPTodoAction) then) =
       _$RPTodoActionCopyWithImpl<$Res, RPTodoAction>;
+  @useResult
+  $Res call({String categoryId});
 }
 
 /// @nodoc
@@ -81,15 +90,29 @@ class _$RPTodoActionCopyWithImpl<$Res, $Val extends RPTodoAction>
 
   /// Create a copy of RPTodoAction
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? categoryId = null,
+  }) {
+    return _then(_value.copyWith(
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$AddTodoActionImplCopyWith<$Res> {
+abstract class _$$AddTodoActionImplCopyWith<$Res>
+    implements $RPTodoActionCopyWith<$Res> {
   factory _$$AddTodoActionImplCopyWith(
           _$AddTodoActionImpl value, $Res Function(_$AddTodoActionImpl) then) =
       __$$AddTodoActionImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({RPToDo todo});
+  $Res call({String categoryId, RPToDo todo});
 
   $RPToDoCopyWith<$Res> get todo;
 }
@@ -107,9 +130,14 @@ class __$$AddTodoActionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? categoryId = null,
     Object? todo = null,
   }) {
     return _then(_$AddTodoActionImpl(
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
       todo: null == todo
           ? _value.todo
           : todo // ignore: cast_nullable_to_non_nullable
@@ -131,14 +159,16 @@ class __$$AddTodoActionImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddTodoActionImpl implements AddTodoAction {
-  const _$AddTodoActionImpl({required this.todo});
+  const _$AddTodoActionImpl({required this.categoryId, required this.todo});
 
+  @override
+  final String categoryId;
   @override
   final RPToDo todo;
 
   @override
   String toString() {
-    return 'RPTodoAction.addTodo(todo: $todo)';
+    return 'RPTodoAction.addTodo(categoryId: $categoryId, todo: $todo)';
   }
 
   @override
@@ -146,11 +176,13 @@ class _$AddTodoActionImpl implements AddTodoAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddTodoActionImpl &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
             (identical(other.todo, todo) || other.todo == todo));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, todo);
+  int get hashCode => Object.hash(runtimeType, categoryId, todo);
 
   /// Create a copy of RPTodoAction
   /// with the given fields replaced by the non-null parameter values.
@@ -163,33 +195,33 @@ class _$AddTodoActionImpl implements AddTodoAction {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RPToDo todo) addTodo,
-    required TResult Function(String todoId) removeTodo,
-    required TResult Function(String todoId) toggleTodo,
+    required TResult Function(String categoryId, RPToDo todo) addTodo,
+    required TResult Function(String categoryId, String todoId) removeTodo,
+    required TResult Function(String categoryId, String todoId) toggleTodo,
   }) {
-    return addTodo(todo);
+    return addTodo(categoryId, todo);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RPToDo todo)? addTodo,
-    TResult? Function(String todoId)? removeTodo,
-    TResult? Function(String todoId)? toggleTodo,
+    TResult? Function(String categoryId, RPToDo todo)? addTodo,
+    TResult? Function(String categoryId, String todoId)? removeTodo,
+    TResult? Function(String categoryId, String todoId)? toggleTodo,
   }) {
-    return addTodo?.call(todo);
+    return addTodo?.call(categoryId, todo);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RPToDo todo)? addTodo,
-    TResult Function(String todoId)? removeTodo,
-    TResult Function(String todoId)? toggleTodo,
+    TResult Function(String categoryId, RPToDo todo)? addTodo,
+    TResult Function(String categoryId, String todoId)? removeTodo,
+    TResult Function(String categoryId, String todoId)? toggleTodo,
     required TResult orElse(),
   }) {
     if (addTodo != null) {
-      return addTodo(todo);
+      return addTodo(categoryId, todo);
     }
     return orElse();
   }
@@ -230,25 +262,31 @@ class _$AddTodoActionImpl implements AddTodoAction {
 }
 
 abstract class AddTodoAction implements RPTodoAction {
-  const factory AddTodoAction({required final RPToDo todo}) =
-      _$AddTodoActionImpl;
+  const factory AddTodoAction(
+      {required final String categoryId,
+      required final RPToDo todo}) = _$AddTodoActionImpl;
 
+  @override
+  String get categoryId;
   RPToDo get todo;
 
   /// Create a copy of RPTodoAction
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddTodoActionImplCopyWith<_$AddTodoActionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RemoveTodoActionImplCopyWith<$Res> {
+abstract class _$$RemoveTodoActionImplCopyWith<$Res>
+    implements $RPTodoActionCopyWith<$Res> {
   factory _$$RemoveTodoActionImplCopyWith(_$RemoveTodoActionImpl value,
           $Res Function(_$RemoveTodoActionImpl) then) =
       __$$RemoveTodoActionImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String todoId});
+  $Res call({String categoryId, String todoId});
 }
 
 /// @nodoc
@@ -264,9 +302,14 @@ class __$$RemoveTodoActionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? categoryId = null,
     Object? todoId = null,
   }) {
     return _then(_$RemoveTodoActionImpl(
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
       todoId: null == todoId
           ? _value.todoId
           : todoId // ignore: cast_nullable_to_non_nullable
@@ -278,14 +321,17 @@ class __$$RemoveTodoActionImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RemoveTodoActionImpl implements RemoveTodoAction {
-  const _$RemoveTodoActionImpl({required this.todoId});
+  const _$RemoveTodoActionImpl(
+      {required this.categoryId, required this.todoId});
 
+  @override
+  final String categoryId;
   @override
   final String todoId;
 
   @override
   String toString() {
-    return 'RPTodoAction.removeTodo(todoId: $todoId)';
+    return 'RPTodoAction.removeTodo(categoryId: $categoryId, todoId: $todoId)';
   }
 
   @override
@@ -293,11 +339,13 @@ class _$RemoveTodoActionImpl implements RemoveTodoAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RemoveTodoActionImpl &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
             (identical(other.todoId, todoId) || other.todoId == todoId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, todoId);
+  int get hashCode => Object.hash(runtimeType, categoryId, todoId);
 
   /// Create a copy of RPTodoAction
   /// with the given fields replaced by the non-null parameter values.
@@ -311,33 +359,33 @@ class _$RemoveTodoActionImpl implements RemoveTodoAction {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RPToDo todo) addTodo,
-    required TResult Function(String todoId) removeTodo,
-    required TResult Function(String todoId) toggleTodo,
+    required TResult Function(String categoryId, RPToDo todo) addTodo,
+    required TResult Function(String categoryId, String todoId) removeTodo,
+    required TResult Function(String categoryId, String todoId) toggleTodo,
   }) {
-    return removeTodo(todoId);
+    return removeTodo(categoryId, todoId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RPToDo todo)? addTodo,
-    TResult? Function(String todoId)? removeTodo,
-    TResult? Function(String todoId)? toggleTodo,
+    TResult? Function(String categoryId, RPToDo todo)? addTodo,
+    TResult? Function(String categoryId, String todoId)? removeTodo,
+    TResult? Function(String categoryId, String todoId)? toggleTodo,
   }) {
-    return removeTodo?.call(todoId);
+    return removeTodo?.call(categoryId, todoId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RPToDo todo)? addTodo,
-    TResult Function(String todoId)? removeTodo,
-    TResult Function(String todoId)? toggleTodo,
+    TResult Function(String categoryId, RPToDo todo)? addTodo,
+    TResult Function(String categoryId, String todoId)? removeTodo,
+    TResult Function(String categoryId, String todoId)? toggleTodo,
     required TResult orElse(),
   }) {
     if (removeTodo != null) {
-      return removeTodo(todoId);
+      return removeTodo(categoryId, todoId);
     }
     return orElse();
   }
@@ -378,25 +426,31 @@ class _$RemoveTodoActionImpl implements RemoveTodoAction {
 }
 
 abstract class RemoveTodoAction implements RPTodoAction {
-  const factory RemoveTodoAction({required final String todoId}) =
-      _$RemoveTodoActionImpl;
+  const factory RemoveTodoAction(
+      {required final String categoryId,
+      required final String todoId}) = _$RemoveTodoActionImpl;
 
+  @override
+  String get categoryId;
   String get todoId;
 
   /// Create a copy of RPTodoAction
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RemoveTodoActionImplCopyWith<_$RemoveTodoActionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ToggleTodoActionImplCopyWith<$Res> {
+abstract class _$$ToggleTodoActionImplCopyWith<$Res>
+    implements $RPTodoActionCopyWith<$Res> {
   factory _$$ToggleTodoActionImplCopyWith(_$ToggleTodoActionImpl value,
           $Res Function(_$ToggleTodoActionImpl) then) =
       __$$ToggleTodoActionImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String todoId});
+  $Res call({String categoryId, String todoId});
 }
 
 /// @nodoc
@@ -412,9 +466,14 @@ class __$$ToggleTodoActionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? categoryId = null,
     Object? todoId = null,
   }) {
     return _then(_$ToggleTodoActionImpl(
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
       todoId: null == todoId
           ? _value.todoId
           : todoId // ignore: cast_nullable_to_non_nullable
@@ -426,14 +485,17 @@ class __$$ToggleTodoActionImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ToggleTodoActionImpl implements ToggleTodoAction {
-  const _$ToggleTodoActionImpl({required this.todoId});
+  const _$ToggleTodoActionImpl(
+      {required this.categoryId, required this.todoId});
 
+  @override
+  final String categoryId;
   @override
   final String todoId;
 
   @override
   String toString() {
-    return 'RPTodoAction.toggleTodo(todoId: $todoId)';
+    return 'RPTodoAction.toggleTodo(categoryId: $categoryId, todoId: $todoId)';
   }
 
   @override
@@ -441,11 +503,13 @@ class _$ToggleTodoActionImpl implements ToggleTodoAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ToggleTodoActionImpl &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
             (identical(other.todoId, todoId) || other.todoId == todoId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, todoId);
+  int get hashCode => Object.hash(runtimeType, categoryId, todoId);
 
   /// Create a copy of RPTodoAction
   /// with the given fields replaced by the non-null parameter values.
@@ -459,33 +523,33 @@ class _$ToggleTodoActionImpl implements ToggleTodoAction {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RPToDo todo) addTodo,
-    required TResult Function(String todoId) removeTodo,
-    required TResult Function(String todoId) toggleTodo,
+    required TResult Function(String categoryId, RPToDo todo) addTodo,
+    required TResult Function(String categoryId, String todoId) removeTodo,
+    required TResult Function(String categoryId, String todoId) toggleTodo,
   }) {
-    return toggleTodo(todoId);
+    return toggleTodo(categoryId, todoId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RPToDo todo)? addTodo,
-    TResult? Function(String todoId)? removeTodo,
-    TResult? Function(String todoId)? toggleTodo,
+    TResult? Function(String categoryId, RPToDo todo)? addTodo,
+    TResult? Function(String categoryId, String todoId)? removeTodo,
+    TResult? Function(String categoryId, String todoId)? toggleTodo,
   }) {
-    return toggleTodo?.call(todoId);
+    return toggleTodo?.call(categoryId, todoId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RPToDo todo)? addTodo,
-    TResult Function(String todoId)? removeTodo,
-    TResult Function(String todoId)? toggleTodo,
+    TResult Function(String categoryId, RPToDo todo)? addTodo,
+    TResult Function(String categoryId, String todoId)? removeTodo,
+    TResult Function(String categoryId, String todoId)? toggleTodo,
     required TResult orElse(),
   }) {
     if (toggleTodo != null) {
-      return toggleTodo(todoId);
+      return toggleTodo(categoryId, todoId);
     }
     return orElse();
   }
@@ -526,13 +590,17 @@ class _$ToggleTodoActionImpl implements ToggleTodoAction {
 }
 
 abstract class ToggleTodoAction implements RPTodoAction {
-  const factory ToggleTodoAction({required final String todoId}) =
-      _$ToggleTodoActionImpl;
+  const factory ToggleTodoAction(
+      {required final String categoryId,
+      required final String todoId}) = _$ToggleTodoActionImpl;
 
+  @override
+  String get categoryId;
   String get todoId;
 
   /// Create a copy of RPTodoAction
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToggleTodoActionImplCopyWith<_$ToggleTodoActionImpl> get copyWith =>
       throw _privateConstructorUsedError;
