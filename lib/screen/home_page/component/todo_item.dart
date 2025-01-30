@@ -16,8 +16,12 @@ class TodoItem extends ConsumerWidget {
       key: ValueKey(todo.id),
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
+        extentRatio: 0.2,
         children: [
           SlidableAction(
+            backgroundColor: CupertinoColors.activeGreen,
+            icon: CupertinoIcons.checkmark_alt_circle,
+            foregroundColor: CupertinoColors.white,
             onPressed: (_) {
               ref.read(rpTodosProvider.notifier).dispatch(
                     RPTodoAction.removeTodo(
@@ -26,9 +30,6 @@ class TodoItem extends ConsumerWidget {
                     ),
                   );
             },
-            backgroundColor: CupertinoColors.systemRed,
-            icon: CupertinoIcons.delete,
-            label: '削除',
           ),
         ],
       ),
@@ -40,7 +41,6 @@ class TodoItem extends ConsumerWidget {
             },
             child: CupertinoListTile(
               title: Text(todo.title),
-              trailing: const Icon(CupertinoIcons.ellipsis),
             ),
           );
         },

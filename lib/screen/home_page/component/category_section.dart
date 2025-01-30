@@ -8,9 +8,11 @@ class CategorySection extends ConsumerWidget {
   final String categoryId;
   final String categoryName;
 
-  const CategorySection(
-      {Key? key, required this.categoryId, required this.categoryName})
-      : super(key: key);
+  const CategorySection({
+    super.key,
+    required this.categoryId,
+    required this.categoryName,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,7 +44,12 @@ class CategorySection extends ConsumerWidget {
               ],
             ),
           ),
-          ...todos.map((todo) => TodoItem(todo: todo)).toList(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: Column(children: [
+              ...todos.map((todo) => TodoItem(todo: todo)),
+            ]),
+          )
         ],
       ),
     );
