@@ -1,22 +1,21 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redux_practice/model/todo/rp_todo.dart';
 import 'package:redux_practice/model/todo/rp_todo_category.dart';
+import 'package:redux_practice/resource/initial_categories.dart';
+import 'package:redux_practice/resource/initial_todos.dart';
 
-class RPAppState {
-  final Map<String, List<RPToDo>> todos;
-  final List<RPToDoCategory> categories;
+part 'generate/rp_app_state.freezed.dart';
+part 'generate/rp_app_state.g.dart';
 
-  RPAppState({
-    required this.todos,
-    required this.categories,
-  });
+// flutter pub run build_runner build
 
-  RPAppState copyWith({
-    Map<String, List<RPToDo>>? todos,
-    List<RPToDoCategory>? categories,
-  }) {
-    return RPAppState(
-      todos: todos ?? this.todos,
-      categories: categories ?? this.categories,
-    );
-  }
+@freezed
+class RPAppState with _$RPAppState {
+  const factory RPAppState({
+    @Default(initialTodos) Map<String, List<RPToDo>> todos,
+    @Default(initialCategories) List<RPToDoCategory> categories,
+  }) = _RPAppState;
+
+  factory RPAppState.fromJson(Map<String, dynamic> json) =>
+      _$RPAppStateFromJson(json);
 }
