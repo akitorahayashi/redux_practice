@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:redux_practice/view/home_page.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ReduxPracticeApp extends StatelessWidget {
+  const ReduxPracticeApp({super.key});
 
   @override
   Widget build(BuildContext context) {
