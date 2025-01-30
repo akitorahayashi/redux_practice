@@ -7,18 +7,11 @@ Reduxの強みは、アプリケーション全体の状態を単一のストア
 lib/
   ├── model/
   │   ├── todo/
-  │       ├── rp_todo.dart
-  │       ├── rp_todo_category.dart
   ├── redux/
   │   ├── action/
   │   ├── reducer/
-  │   ├── middleware/
-  │   ├── state/
+  │   ├── store/
   ├── resource/
-  │   ├── initial_todos.dart
-  │   ├── initial_categories.dart
-  ├── service/
-  ├── viewmodel/
   ├── ui/
   │   ├── component/
   │   ├── screen/

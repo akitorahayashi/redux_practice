@@ -5,19 +5,16 @@ const Map<String, List<RPToDo>> initialTodos = {
     RPToDo(
       id: 'todo1',
       title: '買い物リストを作成する',
-      isChecked: false,
       categoryId: 'category1',
     ),
     RPToDo(
       id: 'todo2',
       title: '冷蔵庫の中身を確認する',
-      isChecked: true,
       categoryId: 'category1',
     ),
     RPToDo(
       id: 'todo3',
       title: '夕食の献立を考える',
-      isChecked: false,
       categoryId: 'category1',
     ),
   ],
@@ -25,19 +22,16 @@ const Map<String, List<RPToDo>> initialTodos = {
     RPToDo(
       id: 'todo4',
       title: '洗濯物をたたむ',
-      isChecked: false,
       categoryId: 'category2',
     ),
     RPToDo(
       id: 'todo5',
       title: '掃除機をかける',
-      isChecked: true,
       categoryId: 'category2',
     ),
     RPToDo(
       id: 'todo6',
       title: 'お風呂掃除をする',
-      isChecked: false,
       categoryId: 'category2',
     ),
   ],
@@ -45,19 +39,16 @@ const Map<String, List<RPToDo>> initialTodos = {
     RPToDo(
       id: 'todo7',
       title: '銀行で口座の確認',
-      isChecked: false,
       categoryId: 'category3',
     ),
     RPToDo(
       id: 'todo8',
       title: '光熱費の支払いをする',
-      isChecked: true,
       categoryId: 'category3',
     ),
     RPToDo(
       id: 'todo9',
       title: '保険の内容を見直す',
-      isChecked: false,
       categoryId: 'category3',
     ),
   ],
@@ -65,19 +56,16 @@ const Map<String, List<RPToDo>> initialTodos = {
     RPToDo(
       id: 'todo10',
       title: 'ランニングをする',
-      isChecked: true,
       categoryId: 'category4',
     ),
     RPToDo(
       id: 'todo11',
       title: 'ヨガをする',
-      isChecked: false,
       categoryId: 'category4',
     ),
     RPToDo(
       id: 'todo12',
       title: 'ジムでトレーニング',
-      isChecked: false,
       categoryId: 'category4',
     ),
   ],
