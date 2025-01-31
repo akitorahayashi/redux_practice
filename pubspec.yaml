@@ -1,5 +1,5 @@
 name: redux_practice
-description: "A new Flutter project."
+description: "ReduxPractice is for practicing Redux principles by building a to-do app with single-level categorization."
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -8,24 +8,36 @@ environment:
   sdk: ^3.5.4
 
 dependencies:
+  # Flutter 基本パッケージ
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  freezed_annotation: ^2.2.0
-  uuid: ^4.5.1
+
+  # 状態管理
   flutter_riverpod: ^2.6.1
+  hooks_riverpod: ^2.6.1
+  flutter_hooks: ^0.20.5
+
+  # データクラス & シリアライズ
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.9.0
+
+  # ユーティリティ
+  uuid: ^4.5.1
+
+  # UI 関連
   flutter_staggered_grid_view: ^0.7.0
   flutter_slidable: ^3.1.2
   modal_bottom_sheet: ^3.0.0
-  flutter_hooks: ^0.20.5
-  hooks_riverpod: ^2.6.1
 
 dev_dependencies:
+  # テスト関連
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+
+  # コード生成ツール
   build_runner: ^2.4.6
-  json_annotation: ^4.9.0
   json_serializable: ^6.9.0
   freezed: ^2.3.2
 
