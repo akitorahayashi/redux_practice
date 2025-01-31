@@ -19,6 +19,7 @@ class TodoItemState extends ConsumerState<TodoItem> {
 
   @override
   Widget build(BuildContext context) {
+    final rpTheme = CupertinoTheme.of(context);
     return Slidable(
       key: ValueKey(widget.todo.id),
       endActionPane: ActionPane(
@@ -26,7 +27,7 @@ class TodoItemState extends ConsumerState<TodoItem> {
         extentRatio: 0.2,
         children: [
           SlidableAction(
-            backgroundColor: CupertinoColors.activeGreen,
+            backgroundColor: rpTheme.primaryColor,
             icon: CupertinoIcons.checkmark_alt_circle,
             foregroundColor: CupertinoColors.white,
             onPressed: (_) {
