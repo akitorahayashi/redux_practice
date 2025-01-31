@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redux_practice/model/todo/rp_todo_category.dart';
 import 'package:redux_practice/redux/action/rp_todo_category_action.dart';
-import 'package:redux_practice/redux/store/rp_todos_provider.dart';
+import 'package:redux_practice/redux/store/todo/rp_todos_provider.dart';
 import 'package:redux_practice/resource/initial_categories.dart';
 
 class RPCategoriesNotifier extends StateNotifier<List<RPToDoCategory>> {

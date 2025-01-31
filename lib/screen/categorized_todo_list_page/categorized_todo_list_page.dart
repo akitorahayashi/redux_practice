@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:redux_practice/redux/store/rp_categories_provider.dart';
+import 'package:redux_practice/redux/store/todo/rp_categories_provider.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/add_content_sheet/add_category_sheet.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/component/category_section.dart';
 
 import 'package:redux_practice/redux/action/rp_todo_category_action.dart';
-import 'package:redux_practice/redux/store/edit_mode_provider.dart';
+import 'package:redux_practice/redux/action/selected_categories_action.dart';
+import 'package:redux_practice/redux/store/edit_category_todo_list/edit_mode_provider.dart';
+import 'package:redux_practice/redux/store/edit_category_todo_list/selected_categories_provider.dart';
 
 class CategorizedToDoListPage extends ConsumerWidget {
   const CategorizedToDoListPage({super.key});
@@ -15,6 +17,8 @@ class CategorizedToDoListPage extends ConsumerWidget {
     final categories = ref.watch(rpCategoriesProvider);
     final isEditMode = ref.watch(editModeProvider);
     final selectedCategories = ref.watch(selectedCategoriesProvider);
+    final selectedCategoriesNotifier =
+        ref.read(selectedCategoriesProvider.notifier);
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
@@ -24,7 +28,8 @@ class CategorizedToDoListPage extends ConsumerWidget {
           child: Text(isEditMode ? '完了' : '編集'),
           onPressed: () {
             ref.read(editModeProvider.notifier).state = !isEditMode;
-            ref.read(selectedCategoriesProvider.notifier).state = {};
+            selectedCategoriesNotifier
+                .dispatch(const SelectedCategoriesAction.clearSelection());
           },
         ),
         trailing: CupertinoButton(
@@ -78,6 +83,9 @@ class CategorizedToDoListPage extends ConsumerWidget {
                     ? Container(
                         key: const ValueKey('deleteButton'),
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                              color: CupertinoColors.white.withOpacity(0.1)),
                           boxShadow: [
                             BoxShadow(
                               color: CupertinoColors.black.withOpacity(0.2),
@@ -97,9 +105,9 @@ class CategorizedToDoListPage extends ConsumerWidget {
                                   RPTodoCategoryAction.removeCategory(
                                       categoryId: categoryId));
                             }
-                            ref
-                                .read(selectedCategoriesProvider.notifier)
-                                .state = {};
+                            selectedCategoriesNotifier.dispatch(
+                                const SelectedCategoriesAction
+                                    .clearSelection());
                           },
                         ),
                       )

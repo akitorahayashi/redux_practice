@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:redux_practice/redux/store/rp_todos_provider.dart';
-import 'package:redux_practice/redux/store/edit_mode_provider.dart';
+import 'package:redux_practice/redux/store/edit_category_todo_list/selected_categories_provider.dart';
+import 'package:redux_practice/redux/store/todo/rp_todos_provider.dart';
+import 'package:redux_practice/redux/action/selected_categories_action.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/add_content_sheet/add_todo_sheet.dart';
 import 'todo_item.dart';
 
@@ -22,6 +23,9 @@ class CategorySection extends ConsumerWidget {
     final rpTheme = CupertinoTheme.of(context);
     final todos = ref.watch(rpTodosProvider)[categoryId] ?? [];
     final selectedCategories = ref.watch(selectedCategoriesProvider);
+    final isSelected = selectedCategories.contains(categoryId);
+    final selectedCategoriesNotifier =
+        ref.read(selectedCategoriesProvider.notifier);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,17 +42,13 @@ class CategorySection extends ConsumerWidget {
           child: isEditMode
               ? CupertinoCheckbox(
                   key: ValueKey('checkbox-$categoryId'),
-                  value: selectedCategories.contains(categoryId),
+                  value: isSelected,
                   activeColor: rpTheme.primaryColor,
-                  onChanged: (bool? value) {
-                    final newSelected = Set<String>.from(selectedCategories);
-                    if (value == true) {
-                      newSelected.add(categoryId);
-                    } else {
-                      newSelected.remove(categoryId);
-                    }
-                    ref.read(selectedCategoriesProvider.notifier).state =
-                        newSelected;
+                  onChanged: (_) {
+                    selectedCategoriesNotifier.dispatch(
+                      SelectedCategoriesAction.toggleCategory(
+                          categoryId: categoryId),
+                    );
                   },
                 )
               : const SizedBox.shrink(),
@@ -59,24 +59,31 @@ class CategorySection extends ConsumerWidget {
           child: GestureDetector(
             onTap: () {
               if (isEditMode) {
-                final newSelected = Set<String>.from(selectedCategories);
-                if (newSelected.contains(categoryId)) {
-                  newSelected.remove(categoryId);
-                } else {
-                  newSelected.add(categoryId);
-                }
-                ref.read(selectedCategoriesProvider.notifier).state =
-                    newSelected;
+                selectedCategoriesNotifier.dispatch(
+                  SelectedCategoriesAction.toggleCategory(
+                      categoryId: categoryId),
+                );
               }
             },
-            child: Container(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300), // アニメーション時間
+              curve: Curves.easeInOut, // アニメーションの種類
               margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
-                color: selectedCategories.contains(categoryId)
+                color: isSelected
                     ? CupertinoColors.systemGrey3
-                    : CupertinoColors.systemGrey6,
+                    : CupertinoColors.systemGrey6, // 選択時の背景色を変化
                 borderRadius: BorderRadius.circular(12),
+                boxShadow: isSelected
+                    ? [] // 選択時は影を消す
+                    : [
+                        BoxShadow(
+                          color: CupertinoColors.black.withOpacity(0.2),
+                          blurRadius: 6,
+                          spreadRadius: 1,
+                        ),
+                      ], // 選択されていないときは影をつける
               ),
               child: Column(
                 children: [
