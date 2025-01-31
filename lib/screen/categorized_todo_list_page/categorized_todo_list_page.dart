@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redux_practice/redux/store/rp_categories_provider.dart';
-import 'package:redux_practice/screen/add_category_modal.dart';
+import 'package:redux_practice/screen/categorized_todo_list_page/add_content_sheet/add_category_sheet.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/component/category_section.dart';
 
 class CategorizedToDoListPage extends ConsumerWidget {
@@ -17,7 +17,7 @@ class CategorizedToDoListPage extends ConsumerWidget {
         trailing: CupertinoButton(
           padding: EdgeInsets.zero,
           child: const Icon(CupertinoIcons.add, size: 28),
-          onPressed: () => showAddCategoryModal(context),
+          onPressed: () => showAddCategorySheet(context),
         ),
       ),
       child: SafeArea(
