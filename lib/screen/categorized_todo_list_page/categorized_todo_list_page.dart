@@ -25,12 +25,33 @@ class CategorizedToDoListPage extends ConsumerWidget {
         middle: const Text('ToDoリスト'),
         leading: CupertinoButton(
           padding: EdgeInsets.zero,
-          child: Text(isEditMode ? '完了' : '編集'),
           onPressed: () {
             ref.read(editModeProvider.notifier).state = !isEditMode;
             selectedCategoriesNotifier
                 .dispatch(const SelectedCategoriesAction.clearSelection());
           },
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: ScaleTransition(scale: animation, child: child),
+              );
+            },
+            child: isEditMode
+                ? const Icon(
+                    CupertinoIcons.checkmark_square,
+                    key: ValueKey('doneIcon'),
+                    size: 24,
+                    color: CupertinoColors.activeGreen,
+                  )
+                : const Icon(
+                    CupertinoIcons.square,
+                    key: ValueKey('editIcon'),
+                    size: 24,
+                    color: CupertinoColors.systemGrey,
+                  ),
+          ),
         ),
         trailing: CupertinoButton(
           padding: EdgeInsets.zero,
@@ -66,7 +87,6 @@ class CategorizedToDoListPage extends ConsumerWidget {
                 ],
               ),
             ),
-            // 編集モードでカテゴリーを選択した時に削除できるボタン
             Positioned(
               bottom: 32,
               left: 16,
