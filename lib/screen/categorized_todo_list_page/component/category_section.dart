@@ -20,6 +20,7 @@ class CategorySection extends ConsumerWidget {
 
     return Container(
       margin: const EdgeInsets.all(8),
+      clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: CupertinoColors.systemGrey6,
         borderRadius: BorderRadius.circular(12),
