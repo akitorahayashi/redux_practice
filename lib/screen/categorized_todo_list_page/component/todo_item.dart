@@ -1,22 +1,26 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redux_practice/redux/action/rp_todo_action.dart';
 import 'package:redux_practice/redux/store/rp_todos_provider.dart';
 import 'package:redux_practice/model/todo/rp_todo.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class TodoItem extends HookConsumerWidget {
+class TodoItem extends ConsumerStatefulWidget {
   final RPToDo todo;
 
   const TodoItem({super.key, required this.todo});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isSlidableOpening = useState(false);
+  TodoItemState createState() => TodoItemState();
+}
 
+class TodoItemState extends ConsumerState<TodoItem> {
+  bool isOpening = false; // スライドが開いているかの状態を管理
+
+  @override
+  Widget build(BuildContext context) {
     return Slidable(
-      key: ValueKey(todo.id),
+      key: ValueKey(widget.todo.id),
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
         extentRatio: 0.2,
@@ -28,27 +32,35 @@ class TodoItem extends HookConsumerWidget {
             onPressed: (_) {
               ref.read(rpTodosProvider.notifier).dispatch(
                     RPTodoAction.removeTodo(
-                      categoryId: todo.categoryId,
-                      todoId: todo.id,
+                      categoryId: widget.todo.categoryId,
+                      todoId: widget.todo.id,
                     ),
                   );
             },
           ),
         ],
       ),
-      child: CupertinoListTile(
-        onTap: () {
-          final slidable = Slidable.of(context);
+      child: Builder(
+        builder: (context) {
+          return CupertinoListTile(
+            onTap: () {
+              final slidable = Slidable.of(context);
 
-          if (isSlidableOpening.value) {
-            slidable?.close();
-            isSlidableOpening.value = false;
-          } else {
-            slidable?.openEndActionPane();
-            isSlidableOpening.value = true;
-          }
+              if (isOpening) {
+                slidable?.close();
+                setState(() {
+                  isOpening = false;
+                });
+              } else {
+                slidable?.openEndActionPane();
+                setState(() {
+                  isOpening = true;
+                });
+              }
+            },
+            title: Text(widget.todo.title),
+          );
         },
-        title: Text(todo.title),
       ),
     );
   }

@@ -15,7 +15,6 @@ dependencies:
 
   # 状態管理
   flutter_riverpod: ^2.6.1
-  hooks_riverpod: ^2.6.1
   flutter_hooks: ^0.20.5
 
   # データクラス & シリアライズ
