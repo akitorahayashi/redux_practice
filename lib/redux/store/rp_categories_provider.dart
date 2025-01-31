@@ -4,5 +4,5 @@ import 'package:redux_practice/model/todo/rp_todo_category.dart';
 
 final rpCategoriesProvider =
     StateNotifierProvider<RPCategoriesNotifier, List<RPToDoCategory>>(
-  (ref) => RPCategoriesNotifier(),
+  (ref) => RPCategoriesNotifier(ref),
 );

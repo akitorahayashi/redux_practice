@@ -44,4 +44,11 @@ class RPTodosNotifier extends StateNotifier<Map<String, List<RPToDo>>> {
           [],
     };
   }
+
+  /// 特定のカテゴリーに紐づくTodoを全削除
+  void removeTodosByCategory(String categoryId) {
+    state = {
+      ...state..remove(categoryId),
+    };
+  }
 }
