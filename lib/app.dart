@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:redux_practice/screen/home_page/home_page.dart';
+import 'package:redux_practice/screen/categorized_todo_list_page/categorized_todo_list_page.dart';
 
 class ReduxPracticeApp extends StatelessWidget {
   const ReduxPracticeApp({super.key});
@@ -11,7 +11,7 @@ class ReduxPracticeApp extends StatelessWidget {
       theme: CupertinoThemeData(
         primaryColor: CupertinoColors.activeGreen,
       ),
-      home: HomePage(),
+      home: CategorizedToDoListPage(),
     );
   }
 }

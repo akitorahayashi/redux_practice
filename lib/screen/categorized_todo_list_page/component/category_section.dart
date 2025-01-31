@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redux_practice/redux/store/rp_todos_provider.dart';
-import 'package:redux_practice/screen/add_todo_modal.dart';
+import 'package:redux_practice/screen/categorized_todo_list_page/add_content_sheet/add_todo_sheet.dart';
 import 'todo_item.dart';
 
 class CategorySection extends ConsumerWidget {
@@ -39,7 +39,7 @@ class CategorySection extends ConsumerWidget {
                 CupertinoButton(
                   padding: EdgeInsets.zero,
                   child: const Icon(CupertinoIcons.add_circled, size: 24),
-                  onPressed: () => showAddTodoModal(context, categoryId),
+                  onPressed: () => showAddTodoSheet(context, categoryId),
                 ),
               ],
             ),
