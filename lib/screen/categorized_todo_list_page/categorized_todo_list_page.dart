@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redux_practice/redux/store/rp_categories_provider.dart';
 import 'package:redux_practice/screen/add_category_modal.dart';
-import 'package:redux_practice/screen/home_page/component/category_section.dart';
+import 'package:redux_practice/screen/categorized_todo_list_page/component/category_section.dart';
 
-class HomePage extends ConsumerWidget {
-  const HomePage({super.key});
+class CategorizedToDoListPage extends ConsumerWidget {
+  const CategorizedToDoListPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

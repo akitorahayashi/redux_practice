@@ -9,7 +9,7 @@ import 'package:uuid/uuid.dart';
 
 void showAddCategoryModal(BuildContext context) {
   TextEditingController controller = TextEditingController();
-  final uuid = Uuid();
+  const uuid = Uuid();
 
   showCupertinoModalBottomSheet(
     context: context,
