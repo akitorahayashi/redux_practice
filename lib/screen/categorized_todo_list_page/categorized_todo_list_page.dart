@@ -34,42 +34,79 @@ class CategorizedToDoListPage extends ConsumerWidget {
         ),
       ),
       child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView.separated(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  itemCount: categories.length + 1,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
-                  itemBuilder: (context, index) {
-                    if (index == categories.length) {
-                      return const SizedBox(height: 200);
-                    }
-                    final category = categories[index];
-                    return CategorySection(
-                      categoryId: category.id,
-                      categoryName: category.name,
-                      isEditMode: isEditMode,
-                    );
-                  },
-                ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.separated(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      itemCount: categories.length + 1,
+                      separatorBuilder: (_, __) => const SizedBox(height: 8),
+                      itemBuilder: (context, index) {
+                        if (index == categories.length) {
+                          return const SizedBox(height: 200);
+                        }
+                        final category = categories[index];
+                        return CategorySection(
+                          categoryId: category.id,
+                          categoryName: category.name,
+                          isEditMode: isEditMode,
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
-              if (isEditMode && selectedCategories.isNotEmpty)
-                CupertinoButton.filled(
-                  child: const Text('選択したカテゴリを削除'),
-                  onPressed: () {
-                    for (var categoryId in selectedCategories) {
-                      ref.read(rpCategoriesProvider.notifier).dispatch(
-                          RPTodoCategoryAction.removeCategory(
-                              categoryId: categoryId));
-                    }
-                    ref.read(selectedCategoriesProvider.notifier).state = {};
-                  },
-                ),
-            ],
-          ),
+            ),
+            // 編集モードでカテゴリーを選択した時に削除できるボタン
+            Positioned(
+              bottom: 32,
+              left: 16,
+              right: 16,
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+                child: (isEditMode && selectedCategories.isNotEmpty)
+                    ? Container(
+                        key: const ValueKey('deleteButton'),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: CupertinoColors.black.withOpacity(0.2),
+                              blurRadius: 6,
+                              spreadRadius: 2,
+                            ),
+                          ],
+                        ),
+                        child: CupertinoButton.filled(
+                          child: const Text(
+                            '選択したカテゴリを削除',
+                            style: TextStyle(fontWeight: FontWeight.w900),
+                          ),
+                          onPressed: () {
+                            for (var categoryId in selectedCategories) {
+                              ref.read(rpCategoriesProvider.notifier).dispatch(
+                                  RPTodoCategoryAction.removeCategory(
+                                      categoryId: categoryId));
+                            }
+                            ref
+                                .read(selectedCategoriesProvider.notifier)
+                                .state = {};
+                          },
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+              ),
+            ),
+          ],
         ),
       ),
     );

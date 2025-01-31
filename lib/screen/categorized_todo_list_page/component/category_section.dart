@@ -19,6 +19,7 @@ class CategorySection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final rpTheme = CupertinoTheme.of(context);
     final todos = ref.watch(rpTodosProvider)[categoryId] ?? [];
     final selectedCategories = ref.watch(selectedCategoriesProvider);
 
@@ -38,6 +39,7 @@ class CategorySection extends ConsumerWidget {
               ? CupertinoCheckbox(
                   key: ValueKey('checkbox-$categoryId'),
                   value: selectedCategories.contains(categoryId),
+                  activeColor: rpTheme.primaryColor,
                   onChanged: (bool? value) {
                     final newSelected = Set<String>.from(selectedCategories);
                     if (value == true) {
@@ -72,7 +74,7 @@ class CategorySection extends ConsumerWidget {
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                 color: selectedCategories.contains(categoryId)
-                    ? CupertinoColors.systemGrey5
+                    ? CupertinoColors.systemGrey3
                     : CupertinoColors.systemGrey6,
                 borderRadius: BorderRadius.circular(12),
               ),

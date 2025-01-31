@@ -11,7 +11,6 @@ class RPTodosNotifier extends StateNotifier<Map<String, List<RPToDo>>> {
     state = action.map(
       addTodo: (a) => _addTodo(a.categoryId, a.todo),
       removeTodo: (a) => _removeTodo(a.categoryId, a.todoId),
-      toggleTodo: (a) => _toggleTodo(a.categoryId, a.todoId),
     );
   }
 
@@ -32,23 +31,10 @@ class RPTodosNotifier extends StateNotifier<Map<String, List<RPToDo>>> {
     };
   }
 
-  /// Todo のチェック状態を切り替え
-  Map<String, List<RPToDo>> _toggleTodo(String categoryId, String todoId) {
-    return {
-      ...state,
-      categoryId: state[categoryId]
-              ?.map((todo) => todo.id == todoId
-                  ? todo.copyWith(isChecked: !todo.isChecked)
-                  : todo)
-              .toList() ??
-          [],
-    };
-  }
-
   /// 特定のカテゴリーに紐づくTodoを全削除
   void removeTodosByCategory(String categoryId) {
-    state = {
-      ...state..remove(categoryId),
-    };
+    final newState = Map<String, List<RPToDo>>.from(state);
+    newState.remove(categoryId);
+    state = newState;
   }
 }

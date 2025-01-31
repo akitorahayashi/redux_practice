@@ -21,21 +21,18 @@ mixin _$RPTodoAction {
   TResult when<TResult extends Object?>({
     required TResult Function(String categoryId, RPToDo todo) addTodo,
     required TResult Function(String categoryId, String todoId) removeTodo,
-    required TResult Function(String categoryId, String todoId) toggleTodo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String categoryId, RPToDo todo)? addTodo,
     TResult? Function(String categoryId, String todoId)? removeTodo,
-    TResult? Function(String categoryId, String todoId)? toggleTodo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String categoryId, RPToDo todo)? addTodo,
     TResult Function(String categoryId, String todoId)? removeTodo,
-    TResult Function(String categoryId, String todoId)? toggleTodo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,21 +40,18 @@ mixin _$RPTodoAction {
   TResult map<TResult extends Object?>({
     required TResult Function(AddTodoAction value) addTodo,
     required TResult Function(RemoveTodoAction value) removeTodo,
-    required TResult Function(ToggleTodoAction value) toggleTodo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AddTodoAction value)? addTodo,
     TResult? Function(RemoveTodoAction value)? removeTodo,
-    TResult? Function(ToggleTodoAction value)? toggleTodo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AddTodoAction value)? addTodo,
     TResult Function(RemoveTodoAction value)? removeTodo,
-    TResult Function(ToggleTodoAction value)? toggleTodo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -197,7 +191,6 @@ class _$AddTodoActionImpl implements AddTodoAction {
   TResult when<TResult extends Object?>({
     required TResult Function(String categoryId, RPToDo todo) addTodo,
     required TResult Function(String categoryId, String todoId) removeTodo,
-    required TResult Function(String categoryId, String todoId) toggleTodo,
   }) {
     return addTodo(categoryId, todo);
   }
@@ -207,7 +200,6 @@ class _$AddTodoActionImpl implements AddTodoAction {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String categoryId, RPToDo todo)? addTodo,
     TResult? Function(String categoryId, String todoId)? removeTodo,
-    TResult? Function(String categoryId, String todoId)? toggleTodo,
   }) {
     return addTodo?.call(categoryId, todo);
   }
@@ -217,7 +209,6 @@ class _$AddTodoActionImpl implements AddTodoAction {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String categoryId, RPToDo todo)? addTodo,
     TResult Function(String categoryId, String todoId)? removeTodo,
-    TResult Function(String categoryId, String todoId)? toggleTodo,
     required TResult orElse(),
   }) {
     if (addTodo != null) {
@@ -231,7 +222,6 @@ class _$AddTodoActionImpl implements AddTodoAction {
   TResult map<TResult extends Object?>({
     required TResult Function(AddTodoAction value) addTodo,
     required TResult Function(RemoveTodoAction value) removeTodo,
-    required TResult Function(ToggleTodoAction value) toggleTodo,
   }) {
     return addTodo(this);
   }
@@ -241,7 +231,6 @@ class _$AddTodoActionImpl implements AddTodoAction {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AddTodoAction value)? addTodo,
     TResult? Function(RemoveTodoAction value)? removeTodo,
-    TResult? Function(ToggleTodoAction value)? toggleTodo,
   }) {
     return addTodo?.call(this);
   }
@@ -251,7 +240,6 @@ class _$AddTodoActionImpl implements AddTodoAction {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AddTodoAction value)? addTodo,
     TResult Function(RemoveTodoAction value)? removeTodo,
-    TResult Function(ToggleTodoAction value)? toggleTodo,
     required TResult orElse(),
   }) {
     if (addTodo != null) {
@@ -361,7 +349,6 @@ class _$RemoveTodoActionImpl implements RemoveTodoAction {
   TResult when<TResult extends Object?>({
     required TResult Function(String categoryId, RPToDo todo) addTodo,
     required TResult Function(String categoryId, String todoId) removeTodo,
-    required TResult Function(String categoryId, String todoId) toggleTodo,
   }) {
     return removeTodo(categoryId, todoId);
   }
@@ -371,7 +358,6 @@ class _$RemoveTodoActionImpl implements RemoveTodoAction {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String categoryId, RPToDo todo)? addTodo,
     TResult? Function(String categoryId, String todoId)? removeTodo,
-    TResult? Function(String categoryId, String todoId)? toggleTodo,
   }) {
     return removeTodo?.call(categoryId, todoId);
   }
@@ -381,7 +367,6 @@ class _$RemoveTodoActionImpl implements RemoveTodoAction {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String categoryId, RPToDo todo)? addTodo,
     TResult Function(String categoryId, String todoId)? removeTodo,
-    TResult Function(String categoryId, String todoId)? toggleTodo,
     required TResult orElse(),
   }) {
     if (removeTodo != null) {
@@ -395,7 +380,6 @@ class _$RemoveTodoActionImpl implements RemoveTodoAction {
   TResult map<TResult extends Object?>({
     required TResult Function(AddTodoAction value) addTodo,
     required TResult Function(RemoveTodoAction value) removeTodo,
-    required TResult Function(ToggleTodoAction value) toggleTodo,
   }) {
     return removeTodo(this);
   }
@@ -405,7 +389,6 @@ class _$RemoveTodoActionImpl implements RemoveTodoAction {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AddTodoAction value)? addTodo,
     TResult? Function(RemoveTodoAction value)? removeTodo,
-    TResult? Function(ToggleTodoAction value)? toggleTodo,
   }) {
     return removeTodo?.call(this);
   }
@@ -415,7 +398,6 @@ class _$RemoveTodoActionImpl implements RemoveTodoAction {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AddTodoAction value)? addTodo,
     TResult Function(RemoveTodoAction value)? removeTodo,
-    TResult Function(ToggleTodoAction value)? toggleTodo,
     required TResult orElse(),
   }) {
     if (removeTodo != null) {
@@ -439,169 +421,5 @@ abstract class RemoveTodoAction implements RPTodoAction {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RemoveTodoActionImplCopyWith<_$RemoveTodoActionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ToggleTodoActionImplCopyWith<$Res>
-    implements $RPTodoActionCopyWith<$Res> {
-  factory _$$ToggleTodoActionImplCopyWith(_$ToggleTodoActionImpl value,
-          $Res Function(_$ToggleTodoActionImpl) then) =
-      __$$ToggleTodoActionImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String categoryId, String todoId});
-}
-
-/// @nodoc
-class __$$ToggleTodoActionImplCopyWithImpl<$Res>
-    extends _$RPTodoActionCopyWithImpl<$Res, _$ToggleTodoActionImpl>
-    implements _$$ToggleTodoActionImplCopyWith<$Res> {
-  __$$ToggleTodoActionImplCopyWithImpl(_$ToggleTodoActionImpl _value,
-      $Res Function(_$ToggleTodoActionImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of RPTodoAction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? categoryId = null,
-    Object? todoId = null,
-  }) {
-    return _then(_$ToggleTodoActionImpl(
-      categoryId: null == categoryId
-          ? _value.categoryId
-          : categoryId // ignore: cast_nullable_to_non_nullable
-              as String,
-      todoId: null == todoId
-          ? _value.todoId
-          : todoId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ToggleTodoActionImpl implements ToggleTodoAction {
-  const _$ToggleTodoActionImpl(
-      {required this.categoryId, required this.todoId});
-
-  @override
-  final String categoryId;
-  @override
-  final String todoId;
-
-  @override
-  String toString() {
-    return 'RPTodoAction.toggleTodo(categoryId: $categoryId, todoId: $todoId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ToggleTodoActionImpl &&
-            (identical(other.categoryId, categoryId) ||
-                other.categoryId == categoryId) &&
-            (identical(other.todoId, todoId) || other.todoId == todoId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, categoryId, todoId);
-
-  /// Create a copy of RPTodoAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ToggleTodoActionImplCopyWith<_$ToggleTodoActionImpl> get copyWith =>
-      __$$ToggleTodoActionImplCopyWithImpl<_$ToggleTodoActionImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String categoryId, RPToDo todo) addTodo,
-    required TResult Function(String categoryId, String todoId) removeTodo,
-    required TResult Function(String categoryId, String todoId) toggleTodo,
-  }) {
-    return toggleTodo(categoryId, todoId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String categoryId, RPToDo todo)? addTodo,
-    TResult? Function(String categoryId, String todoId)? removeTodo,
-    TResult? Function(String categoryId, String todoId)? toggleTodo,
-  }) {
-    return toggleTodo?.call(categoryId, todoId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String categoryId, RPToDo todo)? addTodo,
-    TResult Function(String categoryId, String todoId)? removeTodo,
-    TResult Function(String categoryId, String todoId)? toggleTodo,
-    required TResult orElse(),
-  }) {
-    if (toggleTodo != null) {
-      return toggleTodo(categoryId, todoId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(AddTodoAction value) addTodo,
-    required TResult Function(RemoveTodoAction value) removeTodo,
-    required TResult Function(ToggleTodoAction value) toggleTodo,
-  }) {
-    return toggleTodo(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AddTodoAction value)? addTodo,
-    TResult? Function(RemoveTodoAction value)? removeTodo,
-    TResult? Function(ToggleTodoAction value)? toggleTodo,
-  }) {
-    return toggleTodo?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(AddTodoAction value)? addTodo,
-    TResult Function(RemoveTodoAction value)? removeTodo,
-    TResult Function(ToggleTodoAction value)? toggleTodo,
-    required TResult orElse(),
-  }) {
-    if (toggleTodo != null) {
-      return toggleTodo(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ToggleTodoAction implements RPTodoAction {
-  const factory ToggleTodoAction(
-      {required final String categoryId,
-      required final String todoId}) = _$ToggleTodoActionImpl;
-
-  @override
-  String get categoryId;
-  String get todoId;
-
-  /// Create a copy of RPTodoAction
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ToggleTodoActionImplCopyWith<_$ToggleTodoActionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

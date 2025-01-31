@@ -16,9 +16,4 @@ class RPTodoAction with _$RPTodoAction {
     required String categoryId,
     required String todoId,
   }) = RemoveTodoAction;
-
-  const factory RPTodoAction.toggleTodo({
-    required String categoryId,
-    required String todoId,
-  }) = ToggleTodoAction;
 }
