@@ -14,6 +14,7 @@ class CategorizedToDoListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final rpTheme = CupertinoTheme.of(context);
     final categories = ref.watch(rpCategoriesProvider);
     final isEditMode = ref.watch(editModeProvider);
     final selectedCategories = ref.watch(selectedCategoriesProvider);
@@ -39,17 +40,17 @@ class CategorizedToDoListPage extends ConsumerWidget {
               );
             },
             child: isEditMode
-                ? const Icon(
+                ? Icon(
                     CupertinoIcons.checkmark_square,
-                    key: ValueKey('doneIcon'),
+                    key: const ValueKey('doneIcon'),
                     size: 24,
-                    color: CupertinoColors.activeGreen,
+                    color: rpTheme.primaryColor,
                   )
-                : const Icon(
+                : Icon(
                     CupertinoIcons.square,
-                    key: ValueKey('editIcon'),
+                    key: const ValueKey('editIcon'),
                     size: 24,
-                    color: CupertinoColors.systemGrey,
+                    color: rpTheme.primaryColor,
                   ),
           ),
         ),
