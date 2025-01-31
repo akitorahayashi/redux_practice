@@ -3,7 +3,7 @@ import 'package:redux_practice/model/todo/rp_todo_category.dart';
 const List<RPToDoCategory> initialCategories = [
   RPToDoCategory(
     id: 'category1',
-    name: '食事と買い物',
+    name: '食事に関する買い物',
   ),
   RPToDoCategory(
     id: 'category2',
