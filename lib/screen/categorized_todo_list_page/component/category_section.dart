@@ -30,31 +30,36 @@ class CategorySection extends ConsumerWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // チェックボックス（編集モード時に表示）
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
           transitionBuilder: (Widget child, Animation<double> animation) {
             return FadeTransition(
               opacity: animation,
-              child: child,
+              child: ScaleTransition(scale: animation, child: child),
             );
           },
           child: isEditMode
-              ? CupertinoCheckbox(
-                  key: ValueKey('checkbox-$categoryId'),
-                  value: isSelected,
-                  activeColor: rpTheme.primaryColor,
-                  onChanged: (_) {
+              ? CupertinoButton(
+                  key: ValueKey('checkbox-$categoryId-$isSelected'),
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
                     selectedCategoriesNotifier.dispatch(
                       SelectedCategoriesAction.toggleCategory(
                           categoryId: categoryId),
                     );
                   },
+                  child: Icon(
+                    isSelected
+                        ? CupertinoIcons.checkmark_square
+                        : CupertinoIcons.square,
+                    size: 24,
+                    color: isSelected
+                        ? rpTheme.primaryColor
+                        : CupertinoColors.systemGrey,
+                  ),
                 )
               : const SizedBox.shrink(),
         ),
-
-        // カテゴリーのカード
         Expanded(
           child: GestureDetector(
             onTap: () {
@@ -66,28 +71,27 @@ class CategorySection extends ConsumerWidget {
               }
             },
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300), // アニメーション時間
-              curve: Curves.easeInOut, // アニメーションの種類
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
               margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                 color: isSelected
                     ? CupertinoColors.systemGrey3
-                    : CupertinoColors.systemGrey6, // 選択時の背景色を変化
+                    : CupertinoColors.systemGrey6,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: isSelected
-                    ? [] // 選択時は影を消す
+                    ? []
                     : [
                         BoxShadow(
                           color: CupertinoColors.black.withOpacity(0.2),
                           blurRadius: 6,
                           spreadRadius: 1,
                         ),
-                      ], // 選択されていないときは影をつける
+                      ],
               ),
               child: Column(
                 children: [
-                  // カテゴリー名とToDo追加ボタン
                   Padding(
                     padding: const EdgeInsets.all(12),
                     child: Row(
@@ -98,7 +102,6 @@ class CategorySection extends ConsumerWidget {
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        // ToDo追加ボタン（編集モード時は非表示）
                         SizedBox(
                           width: 24,
                           height: 24,
@@ -128,7 +131,6 @@ class CategorySection extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  // ToDoリスト
                   Padding(
                     padding: const EdgeInsets.only(bottom: 12.0),
                     child: Column(
