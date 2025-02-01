@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:redux_practice/redux/store/todo/rp_todos_provider.dart';
+import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
 import 'package:redux_practice/redux/action/rp_todo_action.dart';
 import 'package:redux_practice/model/todo/rp_todo.dart';
 
@@ -53,7 +53,7 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        'ToDo追加',
+                        'Add ToDo',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -65,7 +65,9 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
                         onPressed: () {
                           if (RPValidationUtil.isValidTodoTitle(
                               controller.text)) {
-                            ref.read(rpTodosProvider.notifier).dispatch(
+                            ref
+                                .read(rpAppStateProvider.notifier)
+                                .dispatchTodoAction(
                                   RPTodoAction.addTodo(
                                     categoryId: categoryId,
                                     todo: RPToDo(

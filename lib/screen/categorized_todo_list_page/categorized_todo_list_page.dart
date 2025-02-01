@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
 import 'package:redux_practice/redux/store/todo/rp_categories_provider.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/add_content_sheet/add_category_sheet.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/component/category_section.dart';
@@ -15,11 +16,14 @@ class CategorizedToDoListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rpTheme = CupertinoTheme.of(context);
+    // provider
     final categories = ref.watch(rpCategoriesProvider);
     final isEditMode = ref.watch(editModeProvider);
-    final selectedCategories = ref.watch(selectedCategoriesProvider);
-    final selectedCategoriesNotifier =
-        ref.read(selectedCategoriesProvider.notifier);
+    final selectedCategories = ref.watch(selectedEditingCategoriesProvider);
+    // notifier
+    final appStateNotifier = ref.read(rpAppStateProvider.notifier);
+    final selectedEditingCategoriesNotifier =
+        ref.read(selectedEditingCategoriesProvider.notifier);
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
@@ -28,7 +32,7 @@ class CategorizedToDoListPage extends ConsumerWidget {
           padding: EdgeInsets.zero,
           onPressed: () {
             ref.read(editModeProvider.notifier).state = !isEditMode;
-            selectedCategoriesNotifier
+            selectedEditingCategoriesNotifier
                 .dispatch(const SelectedCategoriesAction.clearSelection());
           },
           child: AnimatedSwitcher(
@@ -122,11 +126,12 @@ class CategorizedToDoListPage extends ConsumerWidget {
                           ),
                           onPressed: () {
                             for (var categoryId in selectedCategories) {
-                              ref.read(rpCategoriesProvider.notifier).dispatch(
-                                  RPTodoCategoryAction.removeCategory(
-                                      categoryId: categoryId));
+                              appStateNotifier.dispatchCategoryAction(
+                                RPTodoCategoryAction.removeCategory(
+                                    categoryId: categoryId),
+                              );
                             }
-                            selectedCategoriesNotifier.dispatch(
+                            selectedEditingCategoriesNotifier.dispatch(
                                 const SelectedCategoriesAction
                                     .clearSelection());
                           },
