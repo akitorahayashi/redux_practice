@@ -17,8 +17,8 @@ class CategorizedToDoListPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rpTheme = CupertinoTheme.of(context);
     // provider
-    final categories = ref.watch(rpCategoriesProvider);
     final isEditMode = ref.watch(editModeProvider);
+    final categories = ref.watch(rpCategoriesProvider);
     final selectedCategories = ref.watch(selectedEditingCategoriesProvider);
     // notifier
     final appStateNotifier = ref.read(rpAppStateProvider.notifier);

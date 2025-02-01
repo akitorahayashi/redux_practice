@@ -5,16 +5,16 @@ import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
 import 'package:redux_practice/model/todo/rp_todo.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class TodoItem extends ConsumerStatefulWidget {
+class TodoListTile extends ConsumerStatefulWidget {
   final RPToDo todo;
 
-  const TodoItem({super.key, required this.todo});
+  const TodoListTile({super.key, required this.todo});
 
   @override
   TodoItemState createState() => TodoItemState();
 }
 
-class TodoItemState extends ConsumerState<TodoItem> {
+class TodoItemState extends ConsumerState<TodoListTile> {
   bool isOpening = false; // スライドが開いているかの状態を管理
 
   @override

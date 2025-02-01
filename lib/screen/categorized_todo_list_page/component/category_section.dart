@@ -4,7 +4,7 @@ import 'package:redux_practice/redux/store/edit_category_todo_list/selected_cate
 import 'package:redux_practice/redux/store/todo/rp_todos_provider.dart';
 import 'package:redux_practice/redux/action/selected_categories_action.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/add_content_sheet/add_todo_sheet.dart';
-import 'todo_item.dart';
+import 'todo_list_tile.dart';
 
 class CategorySection extends ConsumerWidget {
   final String categoryId;
@@ -134,8 +134,9 @@ class CategorySection extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 12.0),
                     child: Column(
-                      children:
-                          todos.map((todo) => TodoItem(todo: todo)).toList(),
+                      children: todos
+                          .map((todo) => TodoListTile(todo: todo))
+                          .toList(),
                     ),
                   )
                 ],
