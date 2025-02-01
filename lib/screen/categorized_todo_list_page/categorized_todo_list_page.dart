@@ -4,7 +4,6 @@ import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
 import 'package:redux_practice/redux/store/todo/rp_categories_provider.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/add_content_sheet/add_category_sheet.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/component/category_section.dart';
-
 import 'package:redux_practice/redux/action/rp_todo_category_action.dart';
 import 'package:redux_practice/redux/action/selected_categories_action.dart';
 import 'package:redux_practice/redux/store/edit_category_todo_list/edit_mode_provider.dart';
@@ -16,18 +15,27 @@ class CategorizedToDoListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rpTheme = CupertinoTheme.of(context);
-    // provider
-    final categories = ref.watch(rpCategoriesProvider);
+
     final isEditMode = ref.watch(editModeProvider);
+    final categories = ref.watch(rpCategoriesProvider);
     final selectedCategories = ref.watch(selectedEditingCategoriesProvider);
-    // notifier
+
     final appStateNotifier = ref.read(rpAppStateProvider.notifier);
     final selectedEditingCategoriesNotifier =
         ref.read(selectedEditingCategoriesProvider.notifier);
 
     return CupertinoPageScaffold(
+      backgroundColor: rpTheme.scaffoldBackgroundColor,
       navigationBar: CupertinoNavigationBar(
-        middle: const Text('Redux Practice', style: TextStyle(fontSize: 18)),
+        backgroundColor: rpTheme.barBackgroundColor,
+        middle: Text(
+          'Redux Practice',
+          style: TextStyle(
+            fontSize: 18,
+            color:
+                CupertinoDynamicColor.resolve(CupertinoColors.label, context),
+          ),
+        ),
         leading: CupertinoButton(
           padding: EdgeInsets.zero,
           onPressed: () {
@@ -60,7 +68,11 @@ class CategorizedToDoListPage extends ConsumerWidget {
         ),
         trailing: CupertinoButton(
           padding: EdgeInsets.zero,
-          child: const Icon(CupertinoIcons.add, size: 28),
+          child: Icon(
+            CupertinoIcons.add,
+            size: 28,
+            color: rpTheme.primaryColor,
+          ),
           onPressed: () => showAddCategorySheet(context),
         ),
       ),
@@ -110,19 +122,27 @@ class CategorizedToDoListPage extends ConsumerWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                              color: CupertinoColors.white.withOpacity(0.1)),
+                            color: CupertinoDynamicColor.resolve(
+                                CupertinoColors.separator, context),
+                          ),
                           boxShadow: [
                             BoxShadow(
-                              color: CupertinoColors.black.withOpacity(0.2),
+                              color: CupertinoDynamicColor.resolve(
+                                      CupertinoColors.systemFill, context)
+                                  .withOpacity(0.2),
                               blurRadius: 6,
                               spreadRadius: 2,
                             ),
                           ],
                         ),
                         child: CupertinoButton.filled(
-                          child: const Text(
+                          child: Text(
                             '選択したカテゴリを削除',
-                            style: TextStyle(fontWeight: FontWeight.w900),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              color: CupertinoDynamicColor.resolve(
+                                  CupertinoColors.white, context),
+                            ),
                           ),
                           onPressed: () {
                             for (var categoryId in selectedCategories) {

@@ -5,22 +5,36 @@ import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
 import 'package:redux_practice/model/todo/rp_todo.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class TodoItem extends ConsumerStatefulWidget {
+class TodoListTile extends ConsumerStatefulWidget {
   final RPToDo todo;
+  final Color backgroundColor; // 親から受け取る
 
-  const TodoItem({super.key, required this.todo});
+  const TodoListTile({
+    super.key,
+    required this.todo,
+    required this.backgroundColor, // 必須引数に追加
+  });
 
   @override
   TodoItemState createState() => TodoItemState();
 }
 
-class TodoItemState extends ConsumerState<TodoItem> {
-  bool isOpening = false; // スライドが開いているかの状態を管理
+class TodoItemState extends ConsumerState<TodoListTile> {
+  bool isOpening = false;
 
   @override
   Widget build(BuildContext context) {
     final rpTheme = CupertinoTheme.of(context);
+    final brightness = MediaQuery.of(context).platformBrightness;
+    final textColor =
+        CupertinoDynamicColor.resolve(CupertinoColors.label, context);
+
+    final foregroundColor = brightness == Brightness.light
+        ? CupertinoColors.systemBackground
+        : rpTheme.primaryColor;
+
     final appStateNotifier = ref.read(rpAppStateProvider.notifier);
+
     return Slidable(
       key: ValueKey(widget.todo.id),
       endActionPane: ActionPane(
@@ -28,9 +42,9 @@ class TodoItemState extends ConsumerState<TodoItem> {
         extentRatio: 0.2,
         children: [
           SlidableAction(
-            backgroundColor: rpTheme.primaryColor,
+            backgroundColor: widget.backgroundColor,
             icon: CupertinoIcons.checkmark_alt_circle,
-            foregroundColor: CupertinoColors.white,
+            foregroundColor: foregroundColor,
             onPressed: (_) {
               appStateNotifier.dispatchTodoAction(
                 RPTodoAction.removeTodo(
@@ -60,7 +74,7 @@ class TodoItemState extends ConsumerState<TodoItem> {
                 });
               }
             },
-            title: Text(widget.todo.title),
+            title: Text(widget.todo.title, style: TextStyle(color: textColor)),
           );
         },
       ),

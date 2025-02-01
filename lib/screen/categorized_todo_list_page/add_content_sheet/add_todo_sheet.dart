@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
 import 'package:redux_practice/redux/action/rp_todo_action.dart';
 import 'package:redux_practice/model/todo/rp_todo.dart';
-
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:redux_practice/util/rp_validation_util.dart';
 import 'package:uuid/uuid.dart';
@@ -33,35 +32,39 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
     expand: false,
     builder: (context) => Consumer(
       builder: (context, ref, _) {
+        final rpTheme = CupertinoTheme.of(context);
+
         return Padding(
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).viewInsets.bottom + 30,
           ),
           child: SingleChildScrollView(
-            // キーボード表示時もスクロール可能にする
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-              decoration: const BoxDecoration(
-                color: CupertinoColors.systemBackground,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              decoration: BoxDecoration(
+                color: rpTheme.scaffoldBackgroundColor,
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(20)),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // ヘッダー
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
+                      Text(
                         'Add ToDo',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        // TODO
+                        //  fontSize: 18,
+                        //  fontWeight: FontWeight.bold,
+                        style: rpTheme.textTheme.navTitleTextStyle,
                       ),
                       CupertinoButton(
                         padding: EdgeInsets.zero,
-                        child: const Icon(CupertinoIcons.add_circled),
+                        child: Icon(
+                          CupertinoIcons.add_circled,
+                          color: rpTheme.primaryColor,
+                        ),
                         onPressed: () {
                           if (RPValidationUtil.isValidTodoTitle(
                               controller.text)) {
@@ -85,20 +88,19 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
                       ),
                     ],
                   ),
-                  // 入力フィールド
                   Container(
                     width: double.infinity,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     decoration: BoxDecoration(
-                      color: CupertinoColors.secondarySystemBackground,
+                      color: rpTheme.barBackgroundColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: CupertinoTextField(
                       controller: controller,
-                      decoration: null, // デフォルトのデザインを消す
+                      decoration: null,
                       placeholder: 'ToDoを入力',
-                      maxLines: null, // 複数行入力可能にする
+                      maxLines: null,
                       minLines: 1,
                       keyboardType: TextInputType.multiline,
                     ),

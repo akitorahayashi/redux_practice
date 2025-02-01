@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redux_practice/model/todo/rp_todo.dart';
 import 'package:redux_practice/model/todo/rp_todo_category.dart';
-import 'package:redux_practice/resource/initial_categories.dart';
-import 'package:redux_practice/resource/initial_todos.dart';
+import 'package:redux_practice/resource/initial_values/initial_categories.dart';
+import 'package:redux_practice/resource/initial_values/initial_todos.dart';
 
 part 'generate/rp_app_state.freezed.dart';
 part 'generate/rp_app_state.g.dart';
