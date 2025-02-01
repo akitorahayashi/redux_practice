@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redux_practice/redux/action/rp_todo_action.dart';
-import 'package:redux_practice/redux/store/todo/rp_todos_provider.dart';
+import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
 import 'package:redux_practice/model/todo/rp_todo.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -20,6 +20,7 @@ class TodoItemState extends ConsumerState<TodoItem> {
   @override
   Widget build(BuildContext context) {
     final rpTheme = CupertinoTheme.of(context);
+    final appStateNotifier = ref.read(rpAppStateProvider.notifier);
     return Slidable(
       key: ValueKey(widget.todo.id),
       endActionPane: ActionPane(
@@ -31,12 +32,12 @@ class TodoItemState extends ConsumerState<TodoItem> {
             icon: CupertinoIcons.checkmark_alt_circle,
             foregroundColor: CupertinoColors.white,
             onPressed: (_) {
-              ref.read(rpTodosProvider.notifier).dispatch(
-                    RPTodoAction.removeTodo(
-                      categoryId: widget.todo.categoryId,
-                      todoId: widget.todo.id,
-                    ),
-                  );
+              appStateNotifier.dispatchTodoAction(
+                RPTodoAction.removeTodo(
+                  categoryId: widget.todo.categoryId,
+                  todoId: widget.todo.id,
+                ),
+              );
             },
           ),
         ],

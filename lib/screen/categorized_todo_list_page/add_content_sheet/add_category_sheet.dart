@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redux_practice/redux/action/rp_todo_category_action.dart';
-import 'package:redux_practice/redux/store/todo/rp_categories_provider.dart';
+import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
 import 'package:redux_practice/model/todo/rp_todo_category.dart';
 
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -56,7 +56,7 @@ void showAddCategorySheet(BuildContext context) {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'カテゴリ追加',
+                          'Add Category',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -68,7 +68,9 @@ void showAddCategorySheet(BuildContext context) {
                           onPressed: () {
                             if (RPValidationUtil.isValidCategoryName(
                                 controller.text)) {
-                              ref.read(rpCategoriesProvider.notifier).dispatch(
+                              ref
+                                  .read(rpAppStateProvider.notifier)
+                                  .dispatchCategoryAction(
                                     RPTodoCategoryAction.addCategory(
                                       category: RPToDoCategory(
                                         name: controller.text.trim(),

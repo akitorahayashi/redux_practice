@@ -1,7 +1,7 @@
 import 'package:redux_practice/model/todo/rp_todo.dart';
 import 'package:redux_practice/redux/action/rp_todo_action.dart';
 
-class RPTodoReducer {
+class RPTodosReducer {
   static Map<String, List<RPToDo>> handle(
       Map<String, List<RPToDo>> todos, RPTodoAction action) {
     return action.map(
