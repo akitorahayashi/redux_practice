@@ -23,7 +23,7 @@ class CategorizedToDoListPage extends ConsumerWidget {
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: const Text('ToDoリスト'),
+        middle: const Text('Redux Practice', style: TextStyle(fontSize: 18)),
         leading: CupertinoButton(
           padding: EdgeInsets.zero,
           onPressed: () {
