@@ -1,8 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:redux_practice/redux/reducer/rp_todo_category_notifier.dart';
 import 'package:redux_practice/model/todo/rp_todo_category.dart';
+import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
 
-final rpCategoriesProvider =
-    StateNotifierProvider<RPCategoriesNotifier, List<RPToDoCategory>>(
-  (ref) => RPCategoriesNotifier(ref),
-);
+final rpCategoriesProvider = Provider<List<RPToDoCategory>>((ref) {
+  return ref.watch(rpAppStateProvider.select((state) => state.categories));
+});

@@ -22,10 +22,10 @@ class CategorySection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rpTheme = CupertinoTheme.of(context);
     final todos = ref.watch(rpTodosProvider)[categoryId] ?? [];
-    final selectedCategories = ref.watch(selectedCategoriesProvider);
+    final selectedCategories = ref.watch(selectedEditingCategoriesProvider);
     final isSelected = selectedCategories.contains(categoryId);
     final selectedCategoriesNotifier =
-        ref.read(selectedCategoriesProvider.notifier);
+        ref.read(selectedEditingCategoriesProvider.notifier);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
