@@ -32,7 +32,15 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
     expand: false,
     builder: (context) => Consumer(
       builder: (context, ref, _) {
+        // color
         final rpTheme = CupertinoTheme.of(context);
+        final backgroundColor = CupertinoDynamicColor.resolve(
+            CupertinoColors.systemBackground, context);
+        final inputFieldColor = CupertinoDynamicColor.resolve(
+            CupertinoColors.secondarySystemBackground, context);
+        final textColor =
+            CupertinoDynamicColor.resolve(CupertinoColors.label, context);
+        final iconColor = rpTheme.primaryColor;
 
         return Padding(
           padding: EdgeInsets.only(
@@ -42,7 +50,7 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
               decoration: BoxDecoration(
-                color: rpTheme.scaffoldBackgroundColor,
+                color: backgroundColor,
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(20)),
               ),
@@ -63,7 +71,7 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
                         padding: EdgeInsets.zero,
                         child: Icon(
                           CupertinoIcons.add_circled,
-                          color: rpTheme.primaryColor,
+                          color: iconColor,
                         ),
                         onPressed: () {
                           if (RPValidationUtil.isValidTodoTitle(
@@ -93,7 +101,7 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     decoration: BoxDecoration(
-                      color: rpTheme.barBackgroundColor,
+                      color: inputFieldColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: CupertinoTextField(
@@ -103,6 +111,11 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
                       maxLines: null,
                       minLines: 1,
                       keyboardType: TextInputType.multiline,
+                      style: TextStyle(color: textColor),
+                      placeholderStyle: TextStyle(
+                        color: CupertinoDynamicColor.resolve(
+                            CupertinoColors.placeholderText, context),
+                      ),
                     ),
                   ),
                 ],

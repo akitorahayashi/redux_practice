@@ -32,12 +32,12 @@ void showAddCategorySheet(BuildContext context) {
     expand: false,
     builder: (context) => Consumer(
       builder: (context, ref, _) {
+        // color
         final rpTheme = CupertinoTheme.of(context);
         final backgroundColor = CupertinoDynamicColor.resolve(
             CupertinoColors.systemBackground, context);
         final inputFieldColor = CupertinoDynamicColor.resolve(
             CupertinoColors.secondarySystemBackground, context);
-        // color
         final textColor =
             CupertinoDynamicColor.resolve(CupertinoColors.label, context);
         final iconColor = rpTheme.primaryColor;
