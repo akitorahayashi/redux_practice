@@ -32,8 +32,8 @@ class CategorizedToDoListPage extends ConsumerWidget {
           'Redux Practice',
           style: TextStyle(
             fontSize: 18,
-            color:
-                CupertinoDynamicColor.resolve(CupertinoColors.label, context),
+            fontWeight: FontWeight.w700,
+            color: CupertinoDynamicColor.resolve(rpTheme.primaryColor, context),
           ),
         ),
         leading: CupertinoButton(
