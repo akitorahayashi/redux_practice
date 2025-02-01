@@ -21,11 +21,31 @@ class CategorySection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rpTheme = CupertinoTheme.of(context);
+    final containerColor =
+        CupertinoDynamicColor.resolve(CupertinoColors.systemGrey6, context);
+    final selectedColor =
+        CupertinoDynamicColor.resolve(CupertinoColors.systemGrey3, context);
+    final notSelectedColor =
+        CupertinoDynamicColor.resolve(CupertinoColors.systemGrey, context);
+    final textColor =
+        CupertinoDynamicColor.resolve(CupertinoColors.label, context);
+    final plusIconColor = rpTheme.primaryColor;
+    final shadowColor =
+        CupertinoDynamicColor.resolve(CupertinoColors.systemFill, context)
+            .withOpacity(0.2);
+
     final todos = ref.watch(rpTodosProvider)[categoryId] ?? [];
     final selectedCategories = ref.watch(selectedEditingCategoriesProvider);
     final isSelected = selectedCategories.contains(categoryId);
     final selectedCategoriesNotifier =
         ref.read(selectedEditingCategoriesProvider.notifier);
+
+    final brightness = MediaQuery.of(context).platformBrightness;
+    final listTileBackgroundColor = isSelected
+        ? selectedColor
+        : brightness == Brightness.light
+            ? rpTheme.primaryColor
+            : containerColor;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,9 +73,7 @@ class CategorySection extends ConsumerWidget {
                         ? CupertinoIcons.checkmark_square
                         : CupertinoIcons.square,
                     size: 24,
-                    color: isSelected
-                        ? rpTheme.primaryColor
-                        : CupertinoColors.systemGrey,
+                    color: isSelected ? rpTheme.primaryColor : notSelectedColor,
                   ),
                 )
               : const SizedBox.shrink(),
@@ -76,15 +94,13 @@ class CategorySection extends ConsumerWidget {
               margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
-                color: isSelected
-                    ? CupertinoColors.systemGrey3
-                    : CupertinoColors.systemGrey6,
+                color: isSelected ? selectedColor : containerColor,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: isSelected
                     ? []
                     : [
                         BoxShadow(
-                          color: CupertinoColors.black.withOpacity(0.2),
+                          color: shadowColor,
                           blurRadius: 6,
                           spreadRadius: 1,
                         ),
@@ -99,8 +115,10 @@ class CategorySection extends ConsumerWidget {
                       children: [
                         Text(
                           categoryName,
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: textColor),
                         ),
                         SizedBox(
                           width: 24,
@@ -119,9 +137,10 @@ class CategorySection extends ConsumerWidget {
                                 : CupertinoButton(
                                     key: ValueKey('addButton-$categoryId'),
                                     padding: EdgeInsets.zero,
-                                    child: const Icon(
+                                    child: Icon(
                                       CupertinoIcons.add_circled,
                                       size: 24,
+                                      color: plusIconColor,
                                     ),
                                     onPressed: () =>
                                         showAddTodoSheet(context, categoryId),
@@ -135,7 +154,10 @@ class CategorySection extends ConsumerWidget {
                     padding: const EdgeInsets.only(bottom: 12.0),
                     child: Column(
                       children: todos
-                          .map((todo) => TodoListTile(todo: todo))
+                          .map((todo) => TodoListTile(
+                                todo: todo,
+                                backgroundColor: listTileBackgroundColor,
+                              ))
                           .toList(),
                     ),
                   )
