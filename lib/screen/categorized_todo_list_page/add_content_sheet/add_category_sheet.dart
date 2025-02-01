@@ -8,7 +8,7 @@ import 'package:redux_practice/util/rp_validation_util.dart';
 import 'package:uuid/uuid.dart';
 
 void showAddCategorySheet(BuildContext context) {
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController inputController = TextEditingController();
   const uuid = Uuid();
 
   void showValidationAlert(BuildContext context) {
@@ -78,18 +78,18 @@ void showAddCategorySheet(BuildContext context) {
                           ),
                           onPressed: () {
                             if (RPValidationUtil.isValidCategoryName(
-                                controller.text)) {
+                                inputController.text)) {
                               ref
                                   .read(rpAppStateProvider.notifier)
                                   .dispatchCategoryAction(
                                     RPTodoCategoryAction.addCategory(
                                       category: RPToDoCategory(
-                                        name: controller.text.trim(),
+                                        name: inputController.text.trim(),
                                         id: uuid.v4(),
                                       ),
                                     ),
                                   );
-                              Navigator.pop(context);
+                              inputController.clear();
                             } else {
                               showValidationAlert(context);
                             }
@@ -109,7 +109,7 @@ void showAddCategorySheet(BuildContext context) {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: CupertinoTextField(
-                        controller: controller,
+                        controller: inputController,
                         placeholder: 'カテゴリ名を入力',
                         decoration: null,
                         maxLines: 1,

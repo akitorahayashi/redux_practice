@@ -8,7 +8,7 @@ import 'package:redux_practice/util/rp_validation_util.dart';
 import 'package:uuid/uuid.dart';
 
 void showAddTodoSheet(BuildContext context, String categoryId) {
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController inputController = TextEditingController();
   const uuid = Uuid();
 
   void showValidationAlert(BuildContext context) {
@@ -75,7 +75,7 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
                         ),
                         onPressed: () {
                           if (RPValidationUtil.isValidTodoTitle(
-                              controller.text)) {
+                              inputController.text)) {
                             ref
                                 .read(rpAppStateProvider.notifier)
                                 .dispatchTodoAction(
@@ -84,11 +84,11 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
                                     todo: RPToDo(
                                       id: uuid.v4(),
                                       categoryId: categoryId,
-                                      title: controller.text.trim(),
+                                      title: inputController.text.trim(),
                                     ),
                                   ),
                                 );
-                            Navigator.pop(context);
+                            inputController.clear();
                           } else {
                             showValidationAlert(context);
                           }
@@ -105,7 +105,7 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: CupertinoTextField(
-                      controller: controller,
+                      controller: inputController,
                       decoration: null,
                       placeholder: 'ToDoを入力',
                       maxLines: null,
