@@ -13,7 +13,7 @@ class ReduxPracticeApp extends ConsumerWidget {
     final brightness = MediaQuery.of(context).platformBrightness;
 
     return CupertinoApp(
-      title: 'Cupertino Demo',
+      title: 'Redux Practice',
       home: const CategorizedToDoListPage(),
       builder: (context, child) {
         return CupertinoTheme(

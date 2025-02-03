@@ -7,7 +7,7 @@ import 'package:redux_practice/resource/initial_values/initial_todos.dart';
 part 'generate/rp_app_state.freezed.dart';
 part 'generate/rp_app_state.g.dart';
 
-// flutter pub run build_runner build
+// $ dart run build_runner build
 
 @freezed
 class RPAppState with _$RPAppState {

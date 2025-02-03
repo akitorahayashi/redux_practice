@@ -16,7 +16,7 @@ class CategorizedToDoListPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rpTheme = CupertinoTheme.of(context);
 
-    final isEditMode = ref.watch(editModeProvider);
+    final isEditMode = ref.watch(editModeFlugProvider);
     final categories = ref.watch(rpCategoriesProvider);
     final selectedCategories = ref.watch(selectedEditingCategoriesProvider);
 
@@ -39,7 +39,7 @@ class CategorizedToDoListPage extends ConsumerWidget {
         leading: CupertinoButton(
           padding: EdgeInsets.zero,
           onPressed: () {
-            ref.read(editModeProvider.notifier).state = !isEditMode;
+            ref.read(editModeFlugProvider.notifier).state = !isEditMode;
             selectedEditingCategoriesNotifier
                 .dispatch(const SelectedCategoriesAction.clearSelection());
           },
