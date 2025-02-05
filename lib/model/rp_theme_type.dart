@@ -16,7 +16,6 @@ enum RPThemeType {
   darkPurple;
 }
 
-// `fromJson` / `toJson` の拡張メソッド
 extension RPThemeTypeX on RPThemeType {
   static RPThemeType fromJson(String json) => _$RPThemeTypeEnumMap.entries
       .firstWhere((e) => e.value == json,
