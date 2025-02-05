@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
-import 'package:redux_practice/screen/categorized_todo_list_page/add_content_sheet/add_category_sheet.dart';
-import 'package:redux_practice/screen/categorized_todo_list_page/component/category_section.dart';
+import 'package:redux_practice/screen/add_content_sheet/add_category_sheet.dart';
+import 'package:redux_practice/screen/component/category_section.dart';
 import 'package:redux_practice/redux/action/rp_todo_category_action.dart';
 
 class CategorizedToDoListPage extends HookConsumerWidget {

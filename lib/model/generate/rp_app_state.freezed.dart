@@ -22,6 +22,7 @@ RPAppState _$RPAppStateFromJson(Map<String, dynamic> json) {
 mixin _$RPAppState {
   Map<String, List<RPToDo>> get todos => throw _privateConstructorUsedError;
   List<RPToDoCategory> get categories => throw _privateConstructorUsedError;
+  RPThemeType get selectedThemeType => throw _privateConstructorUsedError;
 
   /// Serializes this RPAppState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +40,10 @@ abstract class $RPAppStateCopyWith<$Res> {
           RPAppState value, $Res Function(RPAppState) then) =
       _$RPAppStateCopyWithImpl<$Res, RPAppState>;
   @useResult
-  $Res call({Map<String, List<RPToDo>> todos, List<RPToDoCategory> categories});
+  $Res call(
+      {Map<String, List<RPToDo>> todos,
+      List<RPToDoCategory> categories,
+      RPThemeType selectedThemeType});
 }
 
 /// @nodoc
@@ -59,6 +63,7 @@ class _$RPAppStateCopyWithImpl<$Res, $Val extends RPAppState>
   $Res call({
     Object? todos = null,
     Object? categories = null,
+    Object? selectedThemeType = null,
   }) {
     return _then(_value.copyWith(
       todos: null == todos
@@ -69,6 +74,10 @@ class _$RPAppStateCopyWithImpl<$Res, $Val extends RPAppState>
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<RPToDoCategory>,
+      selectedThemeType: null == selectedThemeType
+          ? _value.selectedThemeType
+          : selectedThemeType // ignore: cast_nullable_to_non_nullable
+              as RPThemeType,
     ) as $Val);
   }
 }
@@ -81,7 +90,10 @@ abstract class _$$RPAppStateImplCopyWith<$Res>
       __$$RPAppStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Map<String, List<RPToDo>> todos, List<RPToDoCategory> categories});
+  $Res call(
+      {Map<String, List<RPToDo>> todos,
+      List<RPToDoCategory> categories,
+      RPThemeType selectedThemeType});
 }
 
 /// @nodoc
@@ -99,6 +111,7 @@ class __$$RPAppStateImplCopyWithImpl<$Res>
   $Res call({
     Object? todos = null,
     Object? categories = null,
+    Object? selectedThemeType = null,
   }) {
     return _then(_$RPAppStateImpl(
       todos: null == todos
@@ -109,6 +122,10 @@ class __$$RPAppStateImplCopyWithImpl<$Res>
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<RPToDoCategory>,
+      selectedThemeType: null == selectedThemeType
+          ? _value.selectedThemeType
+          : selectedThemeType // ignore: cast_nullable_to_non_nullable
+              as RPThemeType,
     ));
   }
 }
@@ -118,7 +135,8 @@ class __$$RPAppStateImplCopyWithImpl<$Res>
 class _$RPAppStateImpl implements _RPAppState {
   const _$RPAppStateImpl(
       {final Map<String, List<RPToDo>> todos = initialTodos,
-      final List<RPToDoCategory> categories = initialCategories})
+      final List<RPToDoCategory> categories = initialCategories,
+      this.selectedThemeType = RPThemeType.lightGreen})
       : _todos = todos,
         _categories = categories;
 
@@ -144,8 +162,12 @@ class _$RPAppStateImpl implements _RPAppState {
   }
 
   @override
+  @JsonKey()
+  final RPThemeType selectedThemeType;
+
+  @override
   String toString() {
-    return 'RPAppState(todos: $todos, categories: $categories)';
+    return 'RPAppState(todos: $todos, categories: $categories, selectedThemeType: $selectedThemeType)';
   }
 
   @override
@@ -155,7 +177,9 @@ class _$RPAppStateImpl implements _RPAppState {
             other is _$RPAppStateImpl &&
             const DeepCollectionEquality().equals(other._todos, _todos) &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories));
+                .equals(other._categories, _categories) &&
+            (identical(other.selectedThemeType, selectedThemeType) ||
+                other.selectedThemeType == selectedThemeType));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -163,7 +187,8 @@ class _$RPAppStateImpl implements _RPAppState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_todos),
-      const DeepCollectionEquality().hash(_categories));
+      const DeepCollectionEquality().hash(_categories),
+      selectedThemeType);
 
   /// Create a copy of RPAppState
   /// with the given fields replaced by the non-null parameter values.
@@ -184,7 +209,8 @@ class _$RPAppStateImpl implements _RPAppState {
 abstract class _RPAppState implements RPAppState {
   const factory _RPAppState(
       {final Map<String, List<RPToDo>> todos,
-      final List<RPToDoCategory> categories}) = _$RPAppStateImpl;
+      final List<RPToDoCategory> categories,
+      final RPThemeType selectedThemeType}) = _$RPAppStateImpl;
 
   factory _RPAppState.fromJson(Map<String, dynamic> json) =
       _$RPAppStateImpl.fromJson;
@@ -193,6 +219,8 @@ abstract class _RPAppState implements RPAppState {
   Map<String, List<RPToDo>> get todos;
   @override
   List<RPToDoCategory> get categories;
+  @override
+  RPThemeType get selectedThemeType;
 
   /// Create a copy of RPAppState
   /// with the given fields replaced by the non-null parameter values.

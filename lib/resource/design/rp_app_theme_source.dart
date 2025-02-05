@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'rp_theme_type.dart';
+import 'package:redux_practice/model/rp_theme_type.dart';
 
 /// テーマデータを一元管理するクラス
 class RPAppTheme {
-  /// デフォルトテーマ
-  static const RPThemeType defaultTheme = RPThemeType.lightGreen;
-
-  /// テーマの定義
+  /// テーマの定義 (Light Mode)
   static final Map<RPThemeType, CupertinoThemeData> _lightThemes = {
     RPThemeType.lightGreen:
         _generateTheme(CupertinoColors.activeGreen, Brightness.light),
@@ -16,6 +13,7 @@ class RPAppTheme {
         _generateTheme(CupertinoColors.systemPurple, Brightness.light),
   };
 
+  /// テーマの定義 (Dark Mode)
   static final Map<RPThemeType, CupertinoThemeData> _darkThemes = {
     RPThemeType.lightGreen:
         _generateTheme(CupertinoColors.activeGreen, Brightness.dark),
