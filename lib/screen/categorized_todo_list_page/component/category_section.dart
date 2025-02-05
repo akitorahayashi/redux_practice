@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:redux_practice/redux/store/todo/rp_todos_provider.dart';
-import 'package:redux_practice/redux/action/selected_categories_action.dart';
+import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/add_content_sheet/add_todo_sheet.dart';
 import 'todo_list_tile.dart';
 
@@ -37,7 +36,8 @@ class CategorySection extends ConsumerWidget {
         CupertinoDynamicColor.resolve(CupertinoColors.systemFill, context)
             .withOpacity(0.2);
 
-    final todos = ref.watch(rpTodosProvider)[categoryId] ?? [];
+    final corrTodos = ref.watch(
+        rpAppStateProvider.select((state) => state.todos[categoryId] ?? []));
 
     final brightness = MediaQuery.of(context).platformBrightness;
     final listTileBackgroundColor = isSelected
@@ -144,7 +144,7 @@ class CategorySection extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 12.0),
                     child: Column(
-                      children: todos
+                      children: corrTodos
                           .map((todo) => TodoListTile(
                                 todo: todo,
                                 backgroundColor: listTileBackgroundColor,
