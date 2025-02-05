@@ -1,28 +1,24 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
-import 'package:redux_practice/redux/store/todo/rp_categories_provider.dart';
-import 'package:redux_practice/screen/categorized_todo_list_page/add_content_sheet/add_category_sheet.dart';
-import 'package:redux_practice/screen/categorized_todo_list_page/component/category_section.dart';
+import 'package:redux_practice/screen/add_content_sheet/add_category_sheet.dart';
+import 'package:redux_practice/screen/component/category_section.dart';
 import 'package:redux_practice/redux/action/rp_todo_category_action.dart';
-import 'package:redux_practice/redux/action/selected_categories_action.dart';
-import 'package:redux_practice/redux/store/edit_category_todo_list/edit_mode_provider.dart';
-import 'package:redux_practice/redux/store/edit_category_todo_list/selected_categories_provider.dart';
 
-class CategorizedToDoListPage extends ConsumerWidget {
+class CategorizedToDoListPage extends HookConsumerWidget {
   const CategorizedToDoListPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rpTheme = CupertinoTheme.of(context);
+    final isEditMode = useState(false);
 
-    final isEditMode = ref.watch(editModeFlugProvider);
-    final categories = ref.watch(rpCategoriesProvider);
-    final selectedCategories = ref.watch(selectedEditingCategoriesProvider);
-
+    final categories =
+        ref.watch(rpAppStateProvider.select((state) => state.categories));
     final appStateNotifier = ref.read(rpAppStateProvider.notifier);
-    final selectedEditingCategoriesNotifier =
-        ref.read(selectedEditingCategoriesProvider.notifier);
+
+    final selectedEditingCategoryIDs = useState<Set<String>>({});
 
     return CupertinoPageScaffold(
       backgroundColor: rpTheme.scaffoldBackgroundColor,
@@ -39,9 +35,8 @@ class CategorizedToDoListPage extends ConsumerWidget {
         leading: CupertinoButton(
           padding: EdgeInsets.zero,
           onPressed: () {
-            ref.read(editModeFlugProvider.notifier).state = !isEditMode;
-            selectedEditingCategoriesNotifier
-                .dispatch(const SelectedCategoriesAction.clearSelection());
+            isEditMode.value = !isEditMode.value;
+            selectedEditingCategoryIDs.value = {};
           },
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
@@ -51,7 +46,7 @@ class CategorizedToDoListPage extends ConsumerWidget {
                 child: ScaleTransition(scale: animation, child: child),
               );
             },
-            child: isEditMode
+            child: isEditMode.value
                 ? Icon(
                     CupertinoIcons.checkmark_square,
                     key: const ValueKey('doneIcon'),
@@ -96,7 +91,19 @@ class CategorizedToDoListPage extends ConsumerWidget {
                         return CategorySection(
                           categoryId: category.id,
                           categoryName: category.name,
-                          isEditMode: isEditMode,
+                          isEditMode: isEditMode.value,
+                          isSelected: selectedEditingCategoryIDs.value
+                              .contains(category.id),
+                          onEditCheckmarkPressed: () {
+                            final newSelection = Set<String>.from(
+                                selectedEditingCategoryIDs.value);
+                            if (newSelection.contains(category.id)) {
+                              newSelection.remove(category.id);
+                            } else {
+                              newSelection.add(category.id);
+                            }
+                            selectedEditingCategoryIDs.value = newSelection;
+                          },
                         );
                       },
                     ),
@@ -116,7 +123,8 @@ class CategorizedToDoListPage extends ConsumerWidget {
                     child: child,
                   );
                 },
-                child: (isEditMode && selectedCategories.isNotEmpty)
+                child: (isEditMode.value &&
+                        selectedEditingCategoryIDs.value.isNotEmpty)
                     ? Container(
                         key: const ValueKey('deleteButton'),
                         decoration: BoxDecoration(
@@ -145,15 +153,14 @@ class CategorizedToDoListPage extends ConsumerWidget {
                             ),
                           ),
                           onPressed: () {
-                            for (var categoryId in selectedCategories) {
+                            for (var categoryId
+                                in selectedEditingCategoryIDs.value) {
                               appStateNotifier.dispatchCategoryAction(
                                 RPTodoCategoryAction.removeCategory(
                                     categoryId: categoryId),
                               );
                             }
-                            selectedEditingCategoriesNotifier.dispatch(
-                                const SelectedCategoriesAction
-                                    .clearSelection());
+                            selectedEditingCategoryIDs.value = {};
                           },
                         ),
                       )

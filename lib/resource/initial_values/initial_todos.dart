@@ -52,21 +52,4 @@ const Map<String, List<RPToDo>> initialTodos = {
       categoryId: 'category3',
     ),
   ],
-  'category4': [
-    RPToDo(
-      id: 'todo10',
-      title: 'ランニングをする',
-      categoryId: 'category4',
-    ),
-    RPToDo(
-      id: 'todo11',
-      title: 'ヨガをする',
-      categoryId: 'category4',
-    ),
-    RPToDo(
-      id: 'todo12',
-      title: 'ジムでトレーニング',
-      categoryId: 'category4',
-    ),
-  ],
 };

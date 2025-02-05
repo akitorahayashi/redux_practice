@@ -13,8 +13,4 @@ const List<RPToDoCategory> initialCategories = [
     id: 'category3',
     name: 'お金と手続き',
   ),
-  RPToDoCategory(
-    id: 'category4',
-    name: '健康',
-  ),
 ];
