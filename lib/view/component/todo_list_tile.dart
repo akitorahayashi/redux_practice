@@ -7,12 +7,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 class TodoListTile extends ConsumerStatefulWidget {
   final RPToDo todo;
-  final Color backgroundColor; // 親から受け取る
+  final Color backgroundColor;
 
   const TodoListTile({
     super.key,
     required this.todo,
-    required this.backgroundColor, // 必須引数に追加
+    required this.backgroundColor,
   });
 
   @override

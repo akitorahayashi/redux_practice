@@ -14,9 +14,7 @@ enum RPThemeType {
 
   @JsonValue("darkPurple")
   darkPurple;
-}
 
-extension RPThemeTypeX on RPThemeType {
   static RPThemeType fromJson(String json) => _$RPThemeTypeEnumMap.entries
       .firstWhere((e) => e.value == json,
           orElse: () => const MapEntry(RPThemeType.lightGreen, 'lightGreen'))

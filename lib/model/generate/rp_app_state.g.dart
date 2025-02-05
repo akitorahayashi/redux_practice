@@ -29,7 +29,7 @@ Map<String, dynamic> _$$RPAppStateImplToJson(_$RPAppStateImpl instance) =>
     <String, dynamic>{
       'todos': instance.todos,
       'categories': instance.categories,
-      'selectedThemeType': _$RPThemeTypeEnumMap[instance.selectedThemeType]!,
+      'selectedThemeType': instance.selectedThemeType,
     };
 
 const _$RPThemeTypeEnumMap = {
