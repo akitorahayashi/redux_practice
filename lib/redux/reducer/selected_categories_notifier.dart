@@ -12,7 +12,7 @@ class SelectedCategoriesNotifier extends StateNotifier<Set<String>> {
     );
   }
 
-  /// カテゴリを選択・解除する（immutableな更新）
+  /// カテゴリを選択・解除する
   Set<String> _toggleCategory(String categoryId) {
     final newState = Set<String>.from(state);
     if (newState.contains(categoryId)) {

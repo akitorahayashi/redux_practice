@@ -6,8 +6,6 @@ import 'package:redux_practice/redux/store/todo/rp_categories_provider.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/add_content_sheet/add_category_sheet.dart';
 import 'package:redux_practice/screen/categorized_todo_list_page/component/category_section.dart';
 import 'package:redux_practice/redux/action/rp_todo_category_action.dart';
-import 'package:redux_practice/redux/action/selected_categories_action.dart';
-import 'package:redux_practice/redux/store/edit_category_todo_list/selected_categories_provider.dart';
 
 class CategorizedToDoListPage extends HookConsumerWidget {
   const CategorizedToDoListPage({super.key});
@@ -15,14 +13,12 @@ class CategorizedToDoListPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rpTheme = CupertinoTheme.of(context);
-
     final isEditMode = useState(false);
-    final categories = ref.watch(rpCategoriesProvider);
-    final selectedCategories = ref.watch(selectedEditingCategoriesProvider);
 
+    final categories = ref.watch(rpCategoriesProvider);
     final appStateNotifier = ref.read(rpAppStateProvider.notifier);
-    final selectedEditingCategoriesNotifier =
-        ref.read(selectedEditingCategoriesProvider.notifier);
+
+    final selectedEditingCategoryIDs = useState<Set<String>>({});
 
     return CupertinoPageScaffold(
       backgroundColor: rpTheme.scaffoldBackgroundColor,
@@ -40,8 +36,7 @@ class CategorizedToDoListPage extends HookConsumerWidget {
           padding: EdgeInsets.zero,
           onPressed: () {
             isEditMode.value = !isEditMode.value;
-            selectedEditingCategoriesNotifier
-                .dispatch(const SelectedCategoriesAction.clearSelection());
+            selectedEditingCategoryIDs.value = {};
           },
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
@@ -97,6 +92,18 @@ class CategorizedToDoListPage extends HookConsumerWidget {
                           categoryId: category.id,
                           categoryName: category.name,
                           isEditMode: isEditMode.value,
+                          isSelected: selectedEditingCategoryIDs.value
+                              .contains(category.id),
+                          onEditCheckmarkPressed: () {
+                            final newSelection = Set<String>.from(
+                                selectedEditingCategoryIDs.value);
+                            if (newSelection.contains(category.id)) {
+                              newSelection.remove(category.id);
+                            } else {
+                              newSelection.add(category.id);
+                            }
+                            selectedEditingCategoryIDs.value = newSelection;
+                          },
                         );
                       },
                     ),
@@ -116,7 +123,8 @@ class CategorizedToDoListPage extends HookConsumerWidget {
                     child: child,
                   );
                 },
-                child: (isEditMode.value && selectedCategories.isNotEmpty)
+                child: (isEditMode.value &&
+                        selectedEditingCategoryIDs.value.isNotEmpty)
                     ? Container(
                         key: const ValueKey('deleteButton'),
                         decoration: BoxDecoration(
@@ -145,15 +153,14 @@ class CategorizedToDoListPage extends HookConsumerWidget {
                             ),
                           ),
                           onPressed: () {
-                            for (var categoryId in selectedCategories) {
+                            for (var categoryId
+                                in selectedEditingCategoryIDs.value) {
                               appStateNotifier.dispatchCategoryAction(
                                 RPTodoCategoryAction.removeCategory(
                                     categoryId: categoryId),
                               );
                             }
-                            selectedEditingCategoriesNotifier.dispatch(
-                                const SelectedCategoriesAction
-                                    .clearSelection());
+                            selectedEditingCategoryIDs.value = {};
                           },
                         ),
                       )
