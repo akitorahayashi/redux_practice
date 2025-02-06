@@ -109,6 +109,7 @@ void showAddCategorySheet(BuildContext context) {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: CupertinoTextField(
+                        autofocus: true,
                         controller: inputController,
                         placeholder: 'カテゴリ名を入力',
                         decoration: null,

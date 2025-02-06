@@ -60,12 +60,10 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Add ToDo',
-                        // TODO
-                        //  fontSize: 18,
-                        //  fontWeight: FontWeight.bold,
-                        style: rpTheme.textTheme.navTitleTextStyle,
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       CupertinoButton(
                         padding: EdgeInsets.zero,
@@ -105,6 +103,7 @@ void showAddTodoSheet(BuildContext context, String categoryId) {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: CupertinoTextField(
+                      autofocus: true,
                       controller: inputController,
                       decoration: null,
                       placeholder: 'ToDoを入力',
