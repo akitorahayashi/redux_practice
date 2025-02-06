@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
-import 'package:redux_practice/resource/design/rp_app_theme_source.dart';
 import 'package:redux_practice/view/categorized_todo_list_page/categorized_todo_list_page.dart';
 
 class ReduxPracticeApp extends ConsumerWidget {
@@ -18,8 +17,7 @@ class ReduxPracticeApp extends ConsumerWidget {
       home: const CategorizedToDoListPage(),
       builder: (context, child) {
         return CupertinoTheme(
-          data: RPAppTheme.getTheme(themeType,
-              isDark: brightness == Brightness.dark),
+          data: themeType.themeData(brightness), // ここで直接アクセス
           child: child!,
         );
       },
