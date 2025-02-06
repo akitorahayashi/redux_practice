@@ -17,16 +17,13 @@ class SettingsPage extends ConsumerWidget {
       navigationBar: _buildNavigationBar(context, rpTheme),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              return FadeTransition(
-                opacity: animation,
-                child: ScaleTransition(scale: animation, child: child),
-              );
-            },
-            child: _buildThemeSelection(context, ref, selectedThemeType),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: ListView(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            children: [
+              _buildThemeSelection(context, ref, selectedThemeType),
+              const SizedBox(height: 200), // 最下部のスペース
+            ],
           ),
         ),
       ),
@@ -64,7 +61,6 @@ class SettingsPage extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 16),
         const Text(
           "Theme colors",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
