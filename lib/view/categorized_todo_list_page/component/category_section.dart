@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
-import 'package:redux_practice/screen/add_content_sheet/add_todo_sheet.dart';
+import 'package:redux_practice/view/categorized_todo_list_page/add_content_sheet/add_todo_sheet.dart';
 import 'todo_list_tile.dart';
 
 class CategorySection extends ConsumerWidget {

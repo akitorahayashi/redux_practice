@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
 import 'package:redux_practice/resource/design/rp_app_theme_source.dart';
-import 'package:redux_practice/screen/categorized_todo_list_page.dart';
+import 'package:redux_practice/view/categorized_todo_list_page/categorized_todo_list_page.dart';
 
 class ReduxPracticeApp extends ConsumerWidget {
   const ReduxPracticeApp({super.key});
