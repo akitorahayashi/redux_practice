@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:redux_practice/redux/action/rp_theme_action.dart';
 import 'package:redux_practice/redux/store/rp_app_state_provider.dart';
-import 'package:redux_practice/resource/rp_theme/rp_theme_type.dart';
+import 'package:redux_practice/model/rp_theme_type.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
@@ -82,7 +83,8 @@ class SettingsPage extends ConsumerWidget {
         return CupertinoButton(
           padding: EdgeInsets.zero,
           onPressed: () {
-            // ref.read(rpAppStateProvider.notifier).updateTheme(themeType);
+            ref.read(rpAppStateProvider.notifier).dispatchThemeAction(
+                RPThemeAction.changeTheme(themeType: themeType));
           },
           child: Container(
             width: 40,

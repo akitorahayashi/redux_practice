@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:redux_practice/resource/rp_theme/rp_theme_config.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part '../../model/generate/rp_theme_type.g.dart';
+part 'generate/rp_theme_type.g.dart';
 
 @JsonEnum(alwaysCreate: true)
 enum RPThemeType {

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redux_practice/resource/rp_theme/rp_theme_type.dart';
+import 'package:redux_practice/model/rp_theme_type.dart';
 import 'package:redux_practice/model/todo/rp_todo.dart';
 import 'package:redux_practice/model/todo/rp_todo_category.dart';
 import 'package:redux_practice/resource/initial_values/initial_categories.dart';

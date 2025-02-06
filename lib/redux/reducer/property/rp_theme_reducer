@@ -1,0 +1,10 @@
+import 'package:redux_practice/model/rp_theme_type.dart';
+import 'package:redux_practice/redux/action/rp_theme_action.dart';
+
+class RPThemeReducer {
+  static RPThemeType handle(RPThemeType currentTheme, RPThemeAction action) {
+    return action.map(
+      changeTheme: (a) => a.themeType,
+    );
+  }
+}
