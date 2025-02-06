@@ -4,6 +4,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'generate/rp_theme_type.g.dart';
 
+// $ dart run build_runner build
+
 @JsonEnum(alwaysCreate: true)
 enum RPThemeType {
   @JsonValue("lightGreen")
@@ -41,7 +43,7 @@ enum RPThemeType {
   @JsonValue("lightBlue")
   lightBlue(
     light: RPThemeConfig(
-      primaryColor: CupertinoColors.systemBlue,
+      primaryColor: CupertinoColors.activeOrange,
       barBackgroundColor: CupertinoColors.systemBackground,
       scaffoldBackgroundColor: CupertinoColors.systemBackground,
       textTheme: CupertinoTextThemeData(
@@ -55,7 +57,7 @@ enum RPThemeType {
       ),
     ),
     dark: RPThemeConfig(
-      primaryColor: CupertinoColors.systemBlue,
+      primaryColor: CupertinoColors.activeOrange,
       barBackgroundColor: CupertinoColors.darkBackgroundGray,
       scaffoldBackgroundColor: CupertinoColors.black,
       textTheme: CupertinoTextThemeData(

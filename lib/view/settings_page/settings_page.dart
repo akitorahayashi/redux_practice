@@ -18,7 +18,16 @@ class SettingsPage extends ConsumerWidget {
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: _buildThemeSelection(context, ref, selectedThemeType),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: ScaleTransition(scale: animation, child: child),
+              );
+            },
+            child: _buildThemeSelection(context, ref, selectedThemeType),
+          ),
         ),
       ),
     );
@@ -41,7 +50,7 @@ class SettingsPage extends ConsumerWidget {
       leading: CupertinoButton(
         padding: EdgeInsets.zero,
         child: const Icon(CupertinoIcons.back, size: 24),
-        onPressed: () => Navigator.pop(context), // 戻るボタンの動作
+        onPressed: () => Navigator.pop(context),
       ),
     );
   }
@@ -86,9 +95,11 @@ class SettingsPage extends ConsumerWidget {
             ref.read(rpAppStateProvider.notifier).dispatchThemeAction(
                 RPThemeAction.changeTheme(themeType: themeType));
           },
-          child: Container(
-            width: 40,
-            height: 40,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            width: isSelected ? 45 : 40,
+            height: isSelected ? 45 : 40,
             margin: const EdgeInsets.symmetric(horizontal: 8),
             decoration: BoxDecoration(
               color: CupertinoDynamicColor.resolve(
