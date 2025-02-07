@@ -34,20 +34,20 @@ class CategorizedToDoListPage extends HookConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: _buildCategoryList(
+              child: _buildCategorizedToDoList(
                 context,
                 categories,
                 isEditMode,
                 selectedEditingCategoryIDs,
               ),
             ),
-            _buildDeleteButton(
+            _buildDeleteCategoryButton(
               context,
               isEditMode,
               selectedEditingCategoryIDs,
               appStateNotifier,
             ),
-            _buildFloatingActionButton(context, isEditMode, rpTheme),
+            _buildAddCategoryFAB(context, isEditMode, rpTheme),
           ],
         ),
       ),
@@ -118,7 +118,7 @@ class CategorizedToDoListPage extends HookConsumerWidget {
   }
 
   // MARK: - Category List
-  Widget _buildCategoryList(
+  Widget _buildCategorizedToDoList(
     BuildContext context,
     List<RPToDoCategory> categories,
     ValueNotifier<bool> isEditMode,
@@ -164,7 +164,7 @@ class CategorizedToDoListPage extends HookConsumerWidget {
   }
 
   // MARK: - Floating Action Button
-  Widget _buildFloatingActionButton(
+  Widget _buildAddCategoryFAB(
     BuildContext context,
     ValueNotifier<bool> isEditMode,
     CupertinoThemeData rpTheme, // Cupertinoテーマを追加
@@ -238,7 +238,7 @@ class CategorizedToDoListPage extends HookConsumerWidget {
   }
 
   // MARK: - Delete Button
-  Widget _buildDeleteButton(
+  Widget _buildDeleteCategoryButton(
     BuildContext context,
     ValueNotifier<bool> isEditMode,
     ValueNotifier<Set<String>> selectedEditingCategoryIDs,

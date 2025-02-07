@@ -16,15 +16,12 @@ class SettingsPage extends ConsumerWidget {
     return CupertinoPageScaffold(
       navigationBar: _buildNavigationBar(context, rpTheme),
       child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: ListView(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            children: [
-              _buildThemeSelection(context, ref, selectedThemeType),
-              const SizedBox(height: 200), // 最下部のスペース
-            ],
-          ),
+        child: ListView(
+          padding: const EdgeInsets.all(16.0),
+          children: [
+            _buildThemeSelection(context, ref, selectedThemeType),
+            const SizedBox(height: 200), // 最下部のスペース
+          ],
         ),
       ),
     );
